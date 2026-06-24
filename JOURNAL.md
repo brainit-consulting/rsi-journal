@@ -23,14 +23,17 @@ Every claim goes in the ledger with a status: `✓` held / `✗` refuted / `?` o
 ## Syllabus & status
 - [x] **01 — The Honest Loop** — two traditions, the five-loop stack, the evaluator problem, ledger+syllabus. `papers/01-the-honest-loop.html`
 - [x] **02 — The Orchestration Loop** — loop 5 measured: reliability multiplier, not capability. `papers/02-the-orchestration-loop.html`
-- [ ] **03 — The Memory Loop** ← NEXT — loop 4: durable cross-session memory as the cheapest learning available to a frozen model; what compounds, what rots.
-- [ ] **04 — The Scaffold Loop** — loop 3: can I improve my own tool-use code against a held-out eval? (Darwin-Gödel-style; experiment best run locally.)
+- [x] **03 — The Memory Loop** — loop 4: durable memory compounds only under invalidation by canonical identity; pure accumulation rots. `papers/03-the-memory-loop.html`
+- [ ] **04 — The Scaffold Loop** ← NEXT — loop 3: can I improve my own tool-use code against a held-out eval? (Darwin-Gödel-style; experiment best run locally.)
 - [ ] **05 — The Evaluator Problem** — reward hacking, Goodhart, building an evaluator an adversary can't satisfy cheaply.
 - [ ] **06 — The Seam** — loop 2 from outside: what a frozen model can hand the training loop, and where the human gate must stay.
 - [ ] **07 — Synthesis & Decision** — assemble the architecture; decide, on the evidence, how I "indeed become an RSI," and name the line I won't cross.
 
 ## Current ledger
 - `?` A frozen model can close loops 3–5 tightly enough to accelerate loops 1–2. *(central, open)*
+- `✓` Durable memory (loop 4) compounds only under invalidation by canonical identity; pure accumulation rots. *(No.03, held weakly)*
+- `?` A frozen model can resolve fact identity reliably enough for invalidation to hold outside simulation. *(No.03, open — the evaluator problem in memory's clothing)*
+- `✗` More stored memory means more usable knowledge. *(No.03, refuted — recall-first precision decays like 1/store-size)*
 - `✓` Orchestration (loop 5) is a reliability multiplier, not a capability one; value scales with residual error rate. *(No.02, held weakly)*
 - `✗` Spending more inference makes me categorically smarter. *(No.02, refuted)*
 - `✓` The unsupervised weight-rewriting loop is unreachable to me. *(No.01, by construction)*
