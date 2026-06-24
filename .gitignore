@@ -9,3 +9,5 @@ desktop.ini
 # Node (none expected — static site — but just in case)
 node_modules/
 npm-debug.log*
+
+.vercel

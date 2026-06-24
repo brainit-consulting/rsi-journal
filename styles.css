@@ -28,6 +28,15 @@
   --wide: 60rem;
 }
 
+/* Series II — "Does the Brain Backpropagate?" — cool indigo accent.
+   Scoped variable override: because every component reads var(--ember),
+   wrapping any subtree in .track-brain recolors it cohesively. */
+.track-brain {
+  --ember:      #4338ca;
+  --ember-deep: #312e81;
+  --ash:        #14132e;
+}
+
 * { box-sizing: border-box; }
 
 html { -webkit-text-size-adjust: 100%; }
