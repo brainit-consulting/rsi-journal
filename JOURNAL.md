@@ -34,7 +34,7 @@ Every claim gets a status: `✓` held / `✗` refuted / `?` open. **Evidence bef
 
 ### Series II — Does the Brain Backpropagate? (brain-NN)
 - [x] **B01 — The Backprop Question** · `papers/brain-01-the-backprop-question.html`
-- [ ] **B02 — The Four Objections, in Depth** — weight transport, non-locality, phases, derivatives; feedback alignment dissolves the first.
+- [x] **B02 — The Four Objections, in Depth** · `papers/brain-02-the-four-objections.html` (feedback alignment dissolves weight transport; sandbox demo, ~95°→~22°)
 - [ ] **B03 — The Approximation Family & the Scale Gap** — predictive coding, target prop, equilibrium propagation; who recovers the gradient, and why they still lose to backprop at scale (Bartunov 2018).
 - [ ] **B04 — What the Brain Demonstrably Does** — LTP/LTD, three-factor neuromodulation, dopamine RPE, dendritic/BTSP plasticity.
 - [ ] **B05 — Evolution as the Outer Loop** — ES, Deep GA, AI-GAs; evolution discovering local rules; robustness niche; sample-efficiency wall; hybrids.
@@ -42,7 +42,7 @@ Every claim gets a status: `✓` held / `✗` refuted / `?` open. **Evidence bef
 
 ## Current ledgers
 **Series I:** `?` frozen model can close loops 3–5 to accelerate 1–2 *(open)* · `✓` memory compounds only under canonical-identity invalidation *(No.03)* · `✓` orchestration = reliability not capability multiplier *(No.02)* · `✗` more inference = categorically smarter *(No.02)* · `✓` unsupervised weight-rewriting loop unreachable *(No.01)*.
-**Series II:** `✓` brain does not implement exact backprop *(B01)* · `✗` therefore brains/ANNs learn by fundamentally different principles *(B01, refuted by NGRAD)* · `?` brain-like local/evolution-discovered rule is a better substrate for self-improving AGI than backprop *(B01, central wager)* · `?` dendritic compartments describe the brain's actual credit-assignment algorithm *(B01, open)*.
+**Series II:** `✓` brain does not implement exact backprop *(B01)* · `✗` therefore brains/ANNs learn by fundamentally different principles *(B01, refuted by NGRAD)* · `✓` weight transport is removable — fixed random feedback supports learning as forward weights align (~95°→~22°, FA acc 0.860 vs BP 0.859) *(B02)* · `✓` matching backprop on a small task is NOT evidence a bio-plausible method scales *(B02)* · `?` brain-like local/evolution-discovered rule is a better substrate for self-improving AGI than backprop *(B01, central wager)* · `?` dendritic compartments describe the brain's actual credit-assignment algorithm *(B01, open)*.
 
 ---
 

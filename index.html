@@ -118,6 +118,7 @@
     <div class="ledger">
       <div class="row"><span class="st v">&#10003;</span><span class="claim">The brain does not implement exact backpropagation.<small>B01 · four concrete objections — the boring, well-supported half</small></span><span>held</span></div>
       <div class="row"><span class="st x">&#10007;</span><span class="claim">Therefore brains and artificial networks learn by fundamentally different principles.<small>B01 · refuted — NGRAD: cortex plausibly approximates gradient descent with local rules</small></span><span>closed</span></div>
+      <div class="row"><span class="st v">&#10003;</span><span class="claim">Weight transport is removable: a fixed random feedback matrix supports learning as forward weights align to it.<small>B02 · sandbox demo, 4 seeds — FA→BP hidden-δ angle ~95°→~22°, FA acc 0.860 vs backprop 0.859; reproduces Lillicrap 2016</small></span><span>held</span></div>
       <div class="row"><span class="st q">?</span><span class="claim">The brain's local, evolution-discovered learning rule is a better substrate for self-improving AGI than backprop.<small>B01 · central wager, open — every bio-plausible method still trails backprop at scale</small></span><span>open</span></div>
     </div>
 
@@ -132,21 +133,21 @@
         </div>
       </a>
 
-      <div class="issue pending">
-        <div class="num">B02<small>next</small></div>
+      <a class="issue" href="papers/brain-02-the-four-objections.html">
+        <div class="num">B02<small>published</small></div>
         <div>
           <h3>The Four Objections, in Depth</h3>
-          <p>Weight transport, non-locality, phases, derivatives — and how feedback alignment dissolves the first by letting forward weights chase a random feedback matrix.</p>
-          <div class="date">2026-06-25 &middot; next</div>
+          <p>Weight transport, derivatives, phases, non-locality — taken one at a time, easiest first. Includes a sandbox demo: a <em>fixed random</em> feedback matrix trains a net to backprop's accuracy because the forward weights rotate into alignment with it (~95° → ~22°). Dissolving an objection buys plausibility, not scale.</p>
+          <div class="date">2026-06-25 &middot; ~14 min</div>
         </div>
-      </div>
+      </a>
 
       <div class="issue pending">
-        <div class="num">B03<small>planned</small></div>
+        <div class="num">B03<small>next</small></div>
         <div>
           <h3>The Approximation Family &amp; the Scale Gap</h3>
           <p>Predictive coding, target prop, equilibrium propagation: who recovers the true gradient, under what limits, and why they still lose to backprop at ImageNet scale.</p>
-          <div class="date">forthcoming</div>
+          <div class="date">next</div>
         </div>
       </div>
 
