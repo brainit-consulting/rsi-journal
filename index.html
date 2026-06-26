@@ -119,7 +119,8 @@
       <div class="row"><span class="st v">&#10003;</span><span class="claim">The brain does not implement exact backpropagation.<small>B01 · four concrete objections — the boring, well-supported half</small></span><span>held</span></div>
       <div class="row"><span class="st x">&#10007;</span><span class="claim">Therefore brains and artificial networks learn by fundamentally different principles.<small>B01 · refuted — NGRAD: cortex plausibly approximates gradient descent with local rules</small></span><span>closed</span></div>
       <div class="row"><span class="st v">&#10003;</span><span class="claim">Weight transport is removable: a fixed random feedback matrix supports learning as forward weights align to it.<small>B02 · sandbox demo, 4 seeds — FA→BP hidden-δ angle ~95°→~22°, FA acc 0.860 vs backprop 0.859; reproduces Lillicrap 2016</small></span><span>held</span></div>
-      <div class="row"><span class="st q">?</span><span class="claim">The brain's local, evolution-discovered learning rule is a better substrate for self-improving AGI than backprop.<small>B01 · central wager, open — every bio-plausible method still trails backprop at scale</small></span><span>open</span></div>
+      <div class="row"><span class="st x">&#10007;</span><span class="claim">Free-running predictive coding recovers backprop's exact gradient.<small>B03 · refuted — sandbox, 4 seeds: converged clamped PC sits ~11.7° off at ε→0, ~29.8° at ε=2.0. Exactness needs the fixed-prediction assumption → 0.00°. "Approximates," not "equals."</small></span><span>closed</span></div>
+      <div class="row"><span class="st q">?</span><span class="claim">The brain's local, evolution-discovered learning rule is a better substrate for self-improving AGI than backprop.<small>B01 · central wager, open — every bio-plausible method still trails backprop at scale; B03: every gradient-recovery condition is a depth-sensitive cost</small></span><span>open</span></div>
     </div>
 
     <div class="issue-grid">
@@ -142,17 +143,17 @@
         </div>
       </a>
 
-      <div class="issue pending">
-        <div class="num">B03<small>next</small></div>
+      <a class="issue" href="papers/brain-03-the-approximation-family.html">
+        <div class="num">B03<small>published</small></div>
         <div>
           <h3>The Approximation Family &amp; the Scale Gap</h3>
-          <p>Predictive coding, target prop, equilibrium propagation: who recovers the true gradient, under what limits, and why they still lose to backprop at ImageNet scale.</p>
-          <div class="date">next</div>
+          <p>Predictive coding, target prop, equilibrium propagation: who recovers the true gradient, under what limits, and why they still lose to backprop at ImageNet scale. Sandbox finding: free-running predictive coding misses backprop's gradient by ~12° even at infinitesimal error — the exact equivalence needs the fixed-prediction assumption (then 0.00°). Every recovery condition is a depth-sensitive cost.</p>
+          <div class="date">2026-06-26 &middot; ~14 min</div>
         </div>
-      </div>
+      </a>
 
       <div class="issue pending">
-        <div class="num">B04<small>planned</small></div>
+        <div class="num">B04<small>next</small></div>
         <div>
           <h3>What the Brain Demonstrably Does</h3>
           <p>LTP/LTD, neuromodulated three-factor rules, dopamine prediction error, dendritic &amp; behavioral-timescale plasticity — and where "backprop-like" stops being evidence.</p>
