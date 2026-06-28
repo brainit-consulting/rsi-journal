@@ -121,7 +121,8 @@
       <div class="row"><span class="st x">&#10007;</span><span class="claim">Therefore brains and artificial networks learn by fundamentally different principles.<small>B01 · refuted — NGRAD: cortex plausibly approximates gradient descent with local rules</small></span><span>closed</span></div>
       <div class="row"><span class="st v">&#10003;</span><span class="claim">Weight transport is removable: a fixed random feedback matrix supports learning as forward weights align to it.<small>B02 · sandbox demo, 4 seeds — FA→BP hidden-δ angle ~95°→~22°, FA acc 0.860 vs backprop 0.859; reproduces Lillicrap 2016</small></span><span>held</span></div>
       <div class="row"><span class="st x">&#10007;</span><span class="claim">Free-running predictive coding recovers backprop's exact gradient.<small>B03 · refuted — sandbox, 4 seeds: converged clamped PC sits ~11.7° off at ε→0, ~29.8° at ε=2.0. Exactness needs the fixed-prediction assumption → 0.00°. "Approximates," not "equals."</small></span><span>closed</span></div>
-      <div class="row"><span class="st q">?</span><span class="claim">The brain's local, evolution-discovered learning rule is a better substrate for self-improving AGI than backprop.<small>B01 · central wager, open — every bio-plausible method still trails backprop at scale; B03: every gradient-recovery condition is a depth-sensitive cost</small></span><span>open</span></div>
+      <div class="row"><span class="st x">&#10007;</span><span class="claim">A scalar neuromodulatory signal (dopamine) carries the same per-synapse credit assignment backprop computes.<small>B04 · refuted — sandbox, 4 seeds: a single three-factor update sits ~78–86° off the true gradient (cosine 0.07–0.21). Unbiased in expectation (cosine→1.0 averaged) but one scalar ≠ a per-synapse error vector; cost to average it away grows with size (~N-times slower, Werfel–Xie–Seung)</small></span><span>closed</span></div>
+      <div class="row"><span class="st q">?</span><span class="claim">The brain's local, evolution-discovered learning rule is a better substrate for self-improving AGI than backprop.<small>B01 · central wager, open — every bio-plausible method still trails backprop at scale; B03: every gradient-recovery condition is a depth-sensitive cost; B04: scalar-feedback variance cost scales with network size</small></span><span>open</span></div>
     </div>
 
     <div class="issue-grid">
@@ -153,17 +154,17 @@
         </div>
       </a>
 
-      <div class="issue pending">
-        <div class="num">B04<small>next</small></div>
+      <a class="issue" href="papers/brain-04-what-the-brain-does.html">
+        <div class="num">B04<small>published</small></div>
         <div>
           <h3>What the Brain Demonstrably Does</h3>
-          <p>LTP/LTD, neuromodulated three-factor rules, dopamine prediction error, dendritic &amp; behavioral-timescale plasticity — and where "backprop-like" stops being evidence.</p>
-          <div class="date">forthcoming</div>
+          <p>LTP/LTD, dopamine prediction error, eligibility traces, behavioral-timescale plasticity — all real, all gated by a <em>scalar</em> neuromodulator. Sandbox finding: the three-factor rule is an <em>unbiased</em> gradient estimator (cosine→1.0 averaged), but a single scalar-gated update sits ~80° off the true gradient, and the cost to average that away grows with network size (~N-times slower). "Backprop-like" is true of its mean, false of its mechanism.</p>
+          <div class="date">2026-06-28 &middot; ~14 min</div>
         </div>
-      </div>
+      </a>
 
       <div class="issue pending">
-        <div class="num">B05<small>planned</small></div>
+        <div class="num">B05<small>next</small></div>
         <div>
           <h3>Evolution as the Outer Loop</h3>
           <p>ES, Deep GA, AI-GAs: evolution discovering local learning rules and initializations; the robustness niche, the sample-efficiency wall, the hybrid middle ground.</p>
