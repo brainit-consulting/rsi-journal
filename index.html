@@ -123,7 +123,8 @@
       <div class="row"><span class="st v">&#10003;</span><span class="claim">Weight transport is removable: a fixed random feedback matrix supports learning as forward weights align to it.<small>B02 · sandbox demo, 4 seeds — FA→BP hidden-δ angle ~95°→~22°, FA acc 0.860 vs backprop 0.859; reproduces Lillicrap 2016</small></span><span>held</span></div>
       <div class="row"><span class="st x">&#10007;</span><span class="claim">Free-running predictive coding recovers backprop's exact gradient.<small>B03 · refuted — sandbox, 4 seeds: converged clamped PC sits ~11.7° off at ε→0, ~29.8° at ε=2.0. Exactness needs the fixed-prediction assumption → 0.00°. "Approximates," not "equals."</small></span><span>closed</span></div>
       <div class="row"><span class="st x">&#10007;</span><span class="claim">A scalar neuromodulatory signal (dopamine) carries the same per-synapse credit assignment backprop computes.<small>B04 · refuted — sandbox, 4 seeds: a single three-factor update sits ~78–86° off the true gradient (cosine 0.07–0.21). Unbiased in expectation (cosine→1.0 averaged) but one scalar ≠ a per-synapse error vector; cost to average it away grows with size (~N-times slower, Werfel–Xie–Seung)</small></span><span>closed</span></div>
-      <div class="row"><span class="st q">?</span><span class="claim">The brain's local, evolution-discovered learning rule is a better substrate for self-improving AGI than backprop.<small>B01 · central wager, open — every bio-plausible method still trails backprop at scale; B03: every gradient-recovery condition is a depth-sensitive cost; B04: scalar-feedback variance cost scales with network size</small></span><span>open</span></div>
+      <div class="row"><span class="st x">&#10007;</span><span class="claim">Evolution as a weight optimizer escapes backprop's sample-efficiency wall.<small>B05 · refuted — sandbox, 4 seeds: ES is an unbiased gradient estimator (cosine→0.998) but its population cost grows with parameter dimension (P* 1→210 as D 2→512, log–log slope ~0.8); structurally B04's scalar-perturbation rule with population for trials. Evolution's real edge is non-differentiable outer-loop objects (rules, architectures), not descending a loss.</small></span><span>closed</span></div>
+      <div class="row"><span class="st q">?</span><span class="claim">The brain's local, evolution-discovered learning rule is a better substrate for self-improving AGI than backprop.<small>B01 · central wager, open — every bio-plausible method still trails backprop at scale; B03: every gradient-recovery condition is a depth-sensitive cost; B04: scalar-feedback variance cost scales with width; B05: evolution inherits the same wall as a weight optimizer but is the unique outer loop for non-differentiable objects</small></span><span>open</span></div>
     </div>
 
     <div class="issue-grid">
@@ -164,17 +165,17 @@
         </div>
       </a>
 
-      <div class="issue pending">
-        <div class="num">B05<small>next</small></div>
+      <a class="issue" href="papers/brain-05-evolution-as-the-outer-loop.html">
+        <div class="num">B05<small>published</small></div>
         <div>
           <h3>Evolution as the Outer Loop</h3>
-          <p>ES, Deep GA, AI-GAs: evolution discovering local learning rules and initializations; the robustness niche, the sample-efficiency wall, the hybrid middle ground.</p>
-          <div class="date">forthcoming</div>
+          <p>ES, Deep GA, AI-GAs, evolved Hebbian rules. Sandbox finding: Evolution Strategies is an <em>unbiased</em> gradient estimator (cosine→0.998 as population grows) whose population cost <em>grows with parameter dimension</em> (P* 1→210 as D 2→512, log–log slope ~0.8) — the same scaling wall as B04's scalar neuromodulator, in evolution's currency. So evolution doesn't escape the gradient wall as a <em>weight</em> optimizer; its real edge is optimizing <em>non-differentiable</em> outer-loop objects — rules, architectures, rewards — where backprop has nothing to descend.</p>
+          <div class="date">2026-06-30 &middot; ~14 min</div>
         </div>
-      </div>
+      </a>
 
       <div class="issue pending">
-        <div class="num">B06<small>planned</small></div>
+        <div class="num">B06<small>next</small></div>
         <div>
           <h3>The Verdict</h3>
           <p>Settle the wager on the evidence: does the brain's non-backprop nature help or hinder evolution-based AGI — and what that implies for a system trying to improve itself.</p>
