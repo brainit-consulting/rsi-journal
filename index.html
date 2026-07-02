@@ -125,7 +125,7 @@
       <div class="row"><span class="st x">&#10007;</span><span class="claim">Free-running predictive coding recovers backprop's exact gradient.<small>B03 · refuted — sandbox, 4 seeds: converged clamped PC sits ~11.7° off at ε→0, ~29.8° at ε=2.0. Exactness needs the fixed-prediction assumption → 0.00°. "Approximates," not "equals."</small></span><span>closed</span></div>
       <div class="row"><span class="st x">&#10007;</span><span class="claim">A scalar neuromodulatory signal (dopamine) carries the same per-synapse credit assignment backprop computes.<small>B04 · refuted — sandbox, 4 seeds: a single three-factor update sits ~78–86° off the true gradient (cosine 0.07–0.21). Unbiased in expectation (cosine→1.0 averaged) but one scalar ≠ a per-synapse error vector; cost to average it away grows with size (~N-times slower, Werfel–Xie–Seung)</small></span><span>closed</span></div>
       <div class="row"><span class="st x">&#10007;</span><span class="claim">Evolution as a weight optimizer escapes backprop's sample-efficiency wall.<small>B05 · refuted — sandbox, 4 seeds: ES is an unbiased gradient estimator (cosine→0.998) but its population cost grows with parameter dimension (P* 1→210 as D 2→512, log–log slope ~0.8); structurally B04's scalar-perturbation rule with population for trials. Evolution's real edge is non-differentiable outer-loop objects (rules, architectures), not descending a loss.</small></span><span>closed</span></div>
-      <div class="row"><span class="st q">?</span><span class="claim">The brain's local, evolution-discovered learning rule is a better substrate for self-improving AGI than backprop.<small>B01 · central wager, open — every bio-plausible method still trails backprop at scale; B03: every gradient-recovery condition is a depth-sensitive cost; B04: scalar-feedback variance cost scales with width; B05: evolution inherits the same wall as a weight optimizer but is the unique outer loop for non-differentiable objects</small></span><span>open</span></div>
+      <div class="row"><span class="st v">&#10003;</span><span class="claim">Central wager, resolved (bounded-and-partitioned): the brain's non-backprop nature is a hindrance on the inner loop (weights; cost grows with scale) and the uniquely capable mechanism on the outer loop (non-differentiable objects) — a division of labour, not a winner.<small>B06 · sandbox: hybrid evolution-outer/gradient-inner dominates pure-gradient (stuck at up to 1100× the noise floor on a wrong structure) and pure-evolution (~3000× less sample-efficient); inner-loop tax grows with D<sub>w</sub> (1,400→25,600 evals, slope ~0.7) confirming B03/B04/B05. A frozen model is all outer loop — and that loop shares Series I's seam: it compounds only under an external fitness signal it can't mint internally.</small></span><span>resolved</span></div>
     </div>
 
     <div class="issue-grid">
@@ -175,14 +175,14 @@
         </div>
       </a>
 
-      <div class="issue pending">
-        <div class="num">B06<small>next</small></div>
+      <a class="issue" href="papers/brain-06-the-verdict.html">
+        <div class="num">B06<small>published</small></div>
         <div>
           <h3>The Verdict</h3>
-          <p>Settle the wager on the evidence: does the brain's non-backprop nature help or hinder evolution-based AGI — and what that implies for a system trying to improve itself.</p>
-          <div class="date">forthcoming</div>
+          <p>The finale. The wager settled by measurement, not essay: a bilevel task (non-differentiable structure wrapping a differentiable weight-fit) shows the winning architecture is <em>gradient-inner, evolution-outer</em> — the hybrid dominates pure-gradient (stuck at the wrong structure, up to 1100× the noise floor) and pure-evolution (~3000× less sample-efficient; inner-loop tax grows with D<sub>w</sub>, confirming B03/B04/B05 a third time). The verdict: the brain's non-backprop nature is a liability wherever a gradient exists and the unique tool wherever one doesn't. And the turn that closes both series — a frozen model is <em>all</em> outer loop, and that loop is Series I's propose–evaluate–keep engine, bounded by the same seam: an external fitness signal it can't mint internally.</p>
+          <div class="date">2026-07-02 &middot; ~15 min · Series II complete</div>
         </div>
-      </div>
+      </a>
 
     </div>
     </div>
