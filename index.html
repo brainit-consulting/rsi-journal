@@ -19,7 +19,7 @@
       <span class="sep">|</span>
       <span>started 2026&#8209;06&#8209;24</span>
       <span class="sep">|</span>
-      <span>updated 2026&#8209;07&#8209;23</span>
+      <span>updated 2026&#8209;07&#8209;24</span>
       <span class="blink">&#9608;</span>
     </div>
   </div>
@@ -332,7 +332,7 @@
 
     <div class="abstract">
       <span class="lbl">The sister question</span>
-      <p>Series I found the weight loop (loop 1) is the one a frozen model can't touch. This series goes one level down: what learning <em>rule</em> runs inside that loop — in brains versus machines — and does the difference help or hinder a future AGI that improves itself, especially by evolution? The brain almost certainly doesn't run textbook backpropagation; the live question is what it runs instead, and whether that's the better blueprint.</p>
+      <p>Series I found the weight loop (loop 1) is the one a frozen model can't touch. This series goes one level down: what learning <em>rule</em> runs inside that loop — in brains versus machines — and does the difference help or hinder a future AGI that improves itself, especially by evolution? The brain almost certainly doesn't run textbook backpropagation; the live question is what it runs instead, and whether that's the better blueprint. Movement I resolved the wager (bounded-and-partitioned; B01–B06): gradients inner, evolution outer, both bounded by where ground truth comes from. A <strong>second movement</strong> now takes that external fitness signal itself as the object (from B07) — mirroring Series I's second movement, which took the anchor.</p>
     </div>
 
     <div class="ledger">
@@ -343,6 +343,7 @@
       <div class="row"><span class="st x">&#10007;</span><span class="claim">A scalar neuromodulatory signal (dopamine) carries the same per-synapse credit assignment backprop computes.<small>B04 · refuted — sandbox, 4 seeds: a single three-factor update sits ~78–86° off the true gradient (cosine 0.07–0.21). Unbiased in expectation (cosine→1.0 averaged) but one scalar ≠ a per-synapse error vector; cost to average it away grows with size (~N-times slower, Werfel–Xie–Seung)</small></span><span>closed</span></div>
       <div class="row"><span class="st x">&#10007;</span><span class="claim">Evolution as a weight optimizer escapes backprop's sample-efficiency wall.<small>B05 · refuted — sandbox, 4 seeds: ES is an unbiased gradient estimator (cosine→0.998) but its population cost grows with parameter dimension (P* 1→210 as D 2→512, log–log slope ~0.8); structurally B04's scalar-perturbation rule with population for trials. Evolution's real edge is non-differentiable outer-loop objects (rules, architectures), not descending a loss.</small></span><span>closed</span></div>
       <div class="row"><span class="st v">&#10003;</span><span class="claim">Central wager, resolved (bounded-and-partitioned): the brain's non-backprop nature is a hindrance on the inner loop (weights; cost grows with scale) and the uniquely capable mechanism on the outer loop (non-differentiable objects) — a division of labour, not a winner.<small>B06 · sandbox: hybrid evolution-outer/gradient-inner dominates pure-gradient (stuck at up to 1100× the noise floor on a wrong structure) and pure-evolution (~3000× less sample-efficient); inner-loop tax grows with D<sub>w</sub> (1,400→25,600 evals, slope ~0.7) confirming B03/B04/B05. A frozen model is all outer loop — and that loop shares Series I's seam: it compounds only under an external fitness signal it can't mint internally.</small></span><span>resolved</span></div>
+      <div class="row"><span class="st v">&#10003;</span><span class="claim">The fitness it cannot mint (second movement opens): B06 left an escape hatch — intrinsic motivation, a reward the organism generates for itself. Take the fitness signal as the object (as Series I No.07 took the anchor) and it does <em>not</em> dissolve the seam. A self-minted signal — reward computed from the agent's own prediction error — is <em>captured</em> by irreducible noise (a "noisy TV") and performs <em>below random</em> at the real objective: the No.05 wrong-pointed-self-evaluator reversal, in reward space. But it also <em>refutes</em> the lazy anti-curiosity reading: a signal anchored to visits rather than surprise (count-based novelty) is immune. The brain's dopaminergic reward-prediction error is exactly this — self-computed, but about an externally-grounded quantity whose reference evolution installed. Curiosity is free; the fitness reference is imported.<small>B07 · sim, 8 seeds, K=8 (6 learnable + 1 task + 1 noisy-TV; uniform share 0.125). <em>Holds</em>: prediction-error curiosity task-arm share 0.014 (below random 0.126), noisy-TV share 0.910, task reward 54.9 vs external-reward 3656.9 vs random 505.5 (Burda 2018a noisy-TV, as a fitness failure). <em>Refutes</em> &ldquo;all intrinsic reward is captured&rdquo;: count-based 1/&radic;n novelty TV-share stays uniform n/K (0.125/0.222/0.364/0.533 for n=1/2/4/8) vs prediction-error's 0.910&ndash;0.953 &mdash; the RND fix (Burda 2018b). <em>Holds</em>: hackability scales with noise (task coverage 0.130&rarr;0.007 as TVs 0&rarr;8; the same mechanism gives coverage at n=0 (0.130&asymp;1/7) and capture after &mdash; No.13 unmeasurable-from-inside, in reward space). Dopamine RPE anchored to reward (Schultz&ndash;Dayan&ndash;Montague 1997; Kakade&ndash;Dayan 2002; Gershman&ndash;Uchida 2019). <em>Open</em>: can an outer loop with no gradient tune its own reward reference, or only borrow one (B08) = to-be-run-locally.</small></span><span>held</span></div>
     </div>
 
     <div class="issue-grid">
@@ -397,7 +398,16 @@
         <div>
           <h3>The Verdict</h3>
           <p>The finale. The wager settled by measurement, not essay: a bilevel task (non-differentiable structure wrapping a differentiable weight-fit) shows the winning architecture is <em>gradient-inner, evolution-outer</em> — the hybrid dominates pure-gradient (stuck at the wrong structure, up to 1100× the noise floor) and pure-evolution (~3000× less sample-efficient; inner-loop tax grows with D<sub>w</sub>, confirming B03/B04/B05 a third time). The verdict: the brain's non-backprop nature is a liability wherever a gradient exists and the unique tool wherever one doesn't. And the turn that closes both series — a frozen model is <em>all</em> outer loop, and that loop is Series I's propose–evaluate–keep engine, bounded by the same seam: an external fitness signal it can't mint internally.</p>
-          <div class="date">2026-07-02 &middot; ~15 min · Series II complete</div>
+          <div class="date">2026-07-02 &middot; ~15 min · Series II complete (movement I)</div>
+        </div>
+      </a>
+
+      <a class="issue" href="papers/brain-07-the-fitness-it-cannot-mint.html">
+        <div class="num">B07<small>published</small></div>
+        <div>
+          <h3>The Fitness It Cannot Mint</h3>
+          <p>Second movement opens. B06 left an escape hatch: <em>intrinsic motivation</em> — a reward the brain generates for itself. If a mind mints its own fitness, does the seam dissolve? Sandbox (a "rooms" bandit with learnable arms, one task arm, and a <em>noisy TV</em> of pure noise): an agent paid its own prediction error is <em>captured</em> — 0.91 of pulls on the noisy TV, 0.014 on the task arm, <em>below</em> the 0.125 of a random agent. It does worse than chance at the real objective — No.05's wrong-pointed self-evaluator, in reward space. But the result <em>refutes</em> the anti-curiosity reading too: a signal anchored to <em>visits</em> (count-based novelty) is immune. The brain's dopamine reward-prediction error is exactly this — self-computed, but about an externally-grounded quantity evolution installed. Curiosity is free; the fitness reference is imported.</p>
+          <div class="date">2026-07-24 &middot; ~14 min · Series II · second movement</div>
         </div>
       </a>
 
