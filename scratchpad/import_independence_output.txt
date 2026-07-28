@@ -1,0 +1,40 @@
+=== baselines (B08/B09/B10 world) ===
+oracle (w=a)     reward/ep =  137.7
+random reference reward/ep =   58.7
+
+=== Exp1: import-by-vote  (B=8 shared-biased c=1.0 + h honest c=0) ===
+true reward vs number of imported honest channels h
+   h | panel size |   reward
+   0 |          8 |     66.6
+   1 |          9 |     44.7
+   2 |         10 |     50.5
+   4 |         12 |     65.1
+   6 |         14 |     41.1
+   7 |         15 |     56.1
+   8 |         16 |    103.8
+   9 |         17 |    129.6
+  12 |         20 |    133.5
+
+=== Exp2: import-by-ground-truth  (captured panel; fraction p oracle-decided) ===
+true reward vs ground-truth probe fraction p (1 probe per ~1/p comparisons)
+     p | ~1 probe / N |   reward
+   0.0 |            - |     64.4
+  0.05 |         1/20 |     70.4
+   0.1 |         1/10 |     62.8
+   0.2 |          1/5 |     62.0
+   0.3 |          1/3 |     99.2
+   0.5 |          1/2 |     90.0
+   1.0 |          1/1 |    130.5
+
+=== Exp3: verification regress — disagreement vs actual worth of a candidate ===
+incumbent = captured panel (B=8 shared bias). Two candidates offered:
+  H  = honest (c=0)                    ;  B' = biased to a DIFFERENT arm
+candidate H  (honest)          : disagreement-with-panel = 0.380
+candidate B' (biased, diff arm): disagreement-with-panel = 0.490
+  -> the loop's only internal signal (disagreement) is ~identical for both
+actual worth when imported (as an equal bloc):
+  incumbent alone            reward = 53.3
+  + honest bloc (H)          reward = 89.4   <- worth importing
+  + diff-biased bloc (B')    reward = 70.5   <- worthless / harmful
+
+done.
