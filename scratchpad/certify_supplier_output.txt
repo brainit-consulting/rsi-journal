@@ -1,0 +1,29 @@
+=== baselines (B08-B11 world) ===
+oracle (w=a)     reward/ep =  137.7
+random reference reward/ep =   58.7
+
+=== Exp1: capture propagates (import verdict from an M=9-source institution) ===
+fraction rho_I of the institution's own sources are captured shared-bias clones
+ rho_I | captured sources |   reward
+   0.0 |       0/9        |    129.3
+  0.25 |       2/9        |    129.0
+   0.5 |       4/9        |    129.1
+  0.67 |       6/9        |     45.3
+  0.75 |       7/9        |     45.3
+   1.0 |       9/9        |     45.3
+
+=== Exp2: authority is a backwards certificate ===
+two institutions; loop reads only each institution's INTERNAL unanimity
+I_honest (rho_I=0, independent sources): internal unanimity = 0.336  worth = 124.2
+I_cartel (rho_I=1, correlated sources) : internal unanimity = 0.564  worth = 57.1
+  -> the MORE unanimous institution (cartel) is the WORSE one to trust
+
+=== Exp3: exogeneity vs authority under rising optimization pressure ===
+both institutions fully honest & independent; differ only in what they are GROUNDED in
+ gens |  I_out (outcome) |  I_pref (preference)
+   10 |            137.2 |                 56.2
+   25 |            133.0 |                 48.2
+   50 |            128.0 |                 54.7
+  100 |            136.0 |                 51.4
+
+done.
