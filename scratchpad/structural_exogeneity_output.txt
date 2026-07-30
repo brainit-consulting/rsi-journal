@@ -1,0 +1,35 @@
+=== baselines (B08-B12 world) ===
+oracle (w=a)     reward/ep =  137.7
+random reference reward/ep =   58.7
+
+=== Exp1: opposition manufactures exogeneity (rho_c=0, sweep advocates M) ===
+M=1 = a lone reporter (B12 report supplier); M>=2 = debate
+M advocates | surv frac |   reward
+          1 |     1.000 |     76.9
+          2 |     0.500 |    132.4
+          3 |     0.333 |    132.4
+          4 |     0.250 |    132.4
+          8 |     0.125 |    132.4
+
+=== Exp2: collusion is the ceiling (M=8 full opposition, sweep rho_c) ===
+ rho_c | surv frac |   reward
+   0.0 |     0.125 |    132.4
+  0.25 |     0.344 |    132.4
+   0.5 |     0.562 |    131.7
+  0.75 |     0.781 |     82.8
+   1.0 |     1.000 |     76.9
+
+head count cannot buy past collusion (fixed rho_c=0.75):
+M advocates | surv frac |   reward
+          2 |     0.875 |     76.9
+          8 |     0.781 |     82.8
+         32 |     0.758 |     80.7
+
+=== Exp3: advocate agreement is a backwards certificate ===
+internal agreement = P(all M advocates cast the same vote on a random pair)
+ rho_c | advocate agreement | mechanism worth
+   0.0 |              0.097 |           132.4
+   0.5 |              0.163 |           131.7
+   1.0 |              0.575 |            76.9
+
+done.
