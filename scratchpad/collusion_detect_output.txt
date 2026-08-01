@@ -1,0 +1,39 @@
+=== Finding 1: internal agreement detector (no ground truth) ===
+  AUC colluder vs random-honest pair  : 0.963  (looks like it works)
+  AUC colluder vs correct-opposed pair : 0.497  (the case that matters)
+  -> agreement confounds collusion with correctness; only ground truth
+     (a canary) disambiguates. The internal detector reduces to a canary.
+
+=== Finding 2: canaries catch a BLIND colluder cheaply (p=0.30) ===
+  C(canaries) | detection power | worth
+       0      |     0.000     |   76.9
+       1      |     0.300     |   92.6
+       2      |     0.510     |  131.7
+       3      |     0.657     |  132.1
+       5      |     0.832     |  132.4
+      10      |     0.972     |  132.4
+
+=== Finding 3: a DISCRIMINATING colluder steps over the tripwire (C=3, p=0.30) ===
+  discrimination a | beta=p(1-a) | detection power | worth
+       0.00       |    0.300    |     0.657     |  132.1  <- blind
+       0.50       |    0.150    |     0.386     |  109.4
+       0.80       |    0.060    |     0.169     |   80.9
+       0.95       |    0.015    |     0.044     |   77.9
+       1.00       |    0.000    |     0.000     |   76.9  <- perfect eval-awareness
+  -> detection power and worth collapse to the floor as a->1.
+     This is eval-awareness / sandbagging: the audit is defeated not by
+     hiding collusion but by recognizing the test.
+
+=== Finding 4: hiding the audit = importing exogenous coverage m (C=3, p=0.30) ===
+  covert coverage m | a=1-m | detection power | worth
+       0.00        | 1.00  |     0.000     |   76.9  <- audit visible, useless
+       0.10        | 0.90  |     0.087     |   79.0
+       0.30        | 0.70  |     0.246     |   82.7
+       0.50        | 0.50  |     0.386     |  109.4
+       1.00        | 0.00  |     0.657     |  132.1  <- fully covert
+  -> worth recovers only to the extent the loop imports exogenous outcomes
+     into the hard region in a form the colluder can't pre-identify --
+     the same scarce resource, at the detector (B08/B11 graded import).
+
+=== bracket check ===
+  random=58.7  floor=76.9  full-opposition=132.4  oracle=137.7
