@@ -1,0 +1,30 @@
+=== Worth vs coverage: direct grading vs debate+monitor (varying leverage lambda) ===
+     b   direct deb l=1.0 deb l=2.0 deb l=3.0 deb l=5.0
+  0.05    79.94     78.08     79.26     80.44     82.80
+  0.10    82.98     79.26     81.62     92.58    131.70
+  0.20    89.06     81.62    112.14    131.98    132.40
+  0.30    95.14     92.58    131.98    132.40    132.40
+  0.50   107.30    131.70    132.40    132.40    132.40
+
+=== Critical leverage lambda*(b): smallest lambda where debate >= direct at equal coverage ===
+  b=0.05: direct= 79.94   lambda*=2.5800000000000014
+  b=0.10: direct= 82.98   lambda*=2.5100000000000016
+  b=0.20: direct= 89.06   lambda*=1.4200000000000004
+  b=0.30: direct= 95.14   lambda*= 1.05
+  b=0.50: direct=107.30   lambda*=  1.0
+
+=== Amplification factor A = (debate gain over floor)/(direct gain over floor), at fixed b=0.10 ===
+  lambda=1: debate_worth= 79.26  A= 0.39
+  lambda=2: debate_worth= 81.62  A= 0.78
+  lambda=3: debate_worth= 92.58  A= 2.58
+  lambda=5: debate_worth=131.70  A= 9.01
+  lambda=8: debate_worth=132.40  A= 9.13
+
+=== Eval-aware sweep: B15 gives lambda->1 for free on the hard region (a->1). ===
+    Deterrence leverage lambda as a function of debater UN-awareness u (u=1 blind, u=0 eval-aware):
+    model lam = 1 + LMAX*u ; check where system crosses lambda*(b=0.10)
+  u=0.00  lam=1.00  debate@b=0.10= 79.26  direct@0.10= 82.98  direct dominates
+  u=0.25  lam=2.00  debate@b=0.10= 81.62  direct@0.10= 82.98  direct dominates
+  u=0.50  lam=3.00  debate@b=0.10= 92.58  direct@0.10= 82.98  DEBATE amplifies
+  u=0.75  lam=4.00  debate@b=0.10=112.14  direct@0.10= 82.98  DEBATE amplifies
+  u=1.00  lam=5.00  debate@b=0.10=131.70  direct@0.10= 82.98  DEBATE amplifies
