@@ -1,0 +1,36 @@
+=== Result 1: handicap (f=0) vs B16 sampled audit, across coverage b and awareness ===
+     b  handicap f=0  B16 audit lam=1  direct grade
+  0.05        132.40            78.08         79.94
+  0.10        132.40            79.26         82.98
+  0.20        132.40            81.62         89.06
+  0.30        132.40            92.58         95.14
+  0.50        132.40           131.70        107.30
+  handicap worth is FLAT (no coverage b term, no audit to recognize) -> 132.40 everywhere.
+  the requirement it needs is an exogenous CURRENCY, not the exogenous OUTCOME (weaker).
+
+=== Result 2: forgeability f transfers to worth (threshold at B13's cliff) ===
+     f    worth
+  0.00   132.40
+  0.25   132.40
+  0.50   131.70
+  0.60   112.14
+  0.75    82.80
+  1.00    76.90
+  collapse threshold f* (worth<104.7) = 0.639  (B13's cliff between rho_c 0.5 and 0.75)
+
+=== Result 3: loop mint-control m over the currency == forgeability; worth collapses ===
+     m    worth   (m=1 fully self-issued currency -> counterfeit the whole cost)
+  0.00   132.40
+  0.25   132.40
+  0.50   131.70
+  0.75    82.80
+  1.00    76.90
+
+=== Refutation: nominal cost does not certify honesty; only non-forgeability does ===
+ kappa (nominal)     f  eff cost k(1-f)    worth
+           10.00  1.00             0.00    76.90
+            0.10  0.00             0.10   132.40
+           10.00  0.70             3.00    92.58
+            0.50  0.10             0.45   132.40
+  huge nominal cost + forgeable currency (kappa=10,f=1) -> 76.90 floor;
+  cheap cost + non-forgeable currency (kappa=0.1,f=0) -> 132.40. Forgeability is the variable.
