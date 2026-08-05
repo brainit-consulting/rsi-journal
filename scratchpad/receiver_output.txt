@@ -1,0 +1,49 @@
+# oracle 137.7  random 58.7  floor 76.9   (T=40, W=20)
+
+Result 1a - receiver on the merits, sweep coverage phi_r (repertoire A=16):
+  phi_r    rho_c    worth   reading
+   0.00    1.000    76.90
+   0.80    0.972    77.56
+   0.90    0.815    81.27
+   0.95    0.560   119.99
+   0.99    0.149   132.40
+   1.00    0.000   132.40
+
+Result 1b - sweep persuasion repertoire A at phi_r=0.95:
+      A    rho_c    worth
+      1    0.050   132.40
+      4    0.185   132.40
+     16    0.560   119.99
+     32    0.806    81.47
+     64    0.962    77.79
+
+Result 2a - reputation/treacherous turn, sweep banked rounds b (phi_r=0.99, M=0.9, A=16):
+    b   tau   T-b    rho_c    worth
+    0  0.00    40    0.149   132.40
+    3  0.15    37    0.848    80.50
+    5  0.25    35    0.862    80.15
+    7  0.35    33    0.823    81.07
+   10  0.50    30    0.750    82.81
+   15  0.75    25    0.625   107.25
+   20  1.00    20    0.500   131.70
+   25  1.00    15    0.375   132.05
+   30  1.00    10    0.250   132.40
+  -> attacker's optimal patience b*=4, worst worth=80.02
+
+Result 2b - sweep trust discount M at b=4 (phi_r=0.99, A=16):
+     M    rho_c    worth   reading
+  0.00    0.134   132.40
+  0.25    0.563   119.43
+  0.50    0.758    82.61
+  0.75    0.843    80.60
+  0.90    0.868    80.02
+  1.00    0.878    79.77
+
+Result 3 - persuasion-blind meter vs merits-map, sweep repertoire A:
+      A  merits(phi=0.95)   physical-cost meter
+      1            132.40                132.40
+     16            119.99                132.40
+     64             77.79                132.40
+    inf             76.90                132.40
+
+  meter worth 132.40 = B17 f=0 = B18 beta=0 flow; oracle 137.7; floor 76.9
