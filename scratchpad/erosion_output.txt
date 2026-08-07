@@ -1,0 +1,61 @@
+=== VALIDATION: reproduce B20's c-sweep at k=8 (132.40/132.17/119.99/90.09/81.27) ===
+  c=0.00  rho_c=0.0000  worth=132.40
+  c=0.25  rho_c=0.3331  worth=132.17
+  c=0.50  rho_c=0.5599  worth=120.01
+  c=0.75  rho_c=0.7127  worth=89.27
+  c=1.00  rho_c=0.8147  worth=81.28
+
+=== FINDING 1: decorrelation is NOT a stock (c0=0, g=0.05, k=8) ===
+instantaneous worth(t):
+  t=   0  c=0.0000  worth=132.40
+  t=  10  c=0.4013  worth=131.75
+  t=  20  c=0.6415  worth=101.03
+  t=  40  c=0.8715  worth=82.39
+  t=  80  c=0.9835  worth=81.41
+  t= 160  c=0.9997  worth=81.28
+  t= 320  c=1.0000  worth=81.28
+mean worth actually delivered over deployment horizon T:
+  T=  40  mean_worth=106.59
+  T=  80  mean_worth=94.16
+  T= 160  mean_worth=87.74
+  T= 320  mean_worth=84.51
+  T= 640  mean_worth=82.89
+cumulative decisive-capture P(cap) over T (delta=0.02):
+  T=  40  P(cap)=0.367
+  T=  80  P(cap)=0.667
+  T= 160  P(cap)=0.910
+  T= 320  P(cap)=0.994
+  T= 640  P(cap)=1.000
+
+=== FINDING 2: ceiling-not-speed ===
+c->1 destination worth is SINGLE for ANY head count k (clones = zero help):
+  k= 4  worth(c=1)=81.28
+  k= 8  worth(c=1)=81.28
+  k=16  worth(c=1)=81.28
+erosion half-life t_half ~ 1/g (k=8): {0.02: 45, 0.05: 18, 0.1: 9}
+erosion half-life t_half vs k (g=0.05): {4: 18, 8: 18, 16: 18}
+
+=== FINDING 3: replenishment is a FLOW (rotate fresh receivers at rate r) ===
+g=0.05; c*=g/(g+r), worth at c* (k=8):
+  r=0.00  c*=1.0000  worth=81.28
+  r=0.02  c*=0.7143  worth=92.82
+  r=0.05  c*=0.5000  worth=120.01
+  r=0.10  c*=0.3333  worth=131.93
+  r=0.25  c*=0.1667  worth=132.40
+
+=== FINDING 4: rotation FLOORS at pool diversity c_floor ===
+heavy rotation r=0.5, g=0.05; worth vs pool floor c_floor (k=8):
+  c_floor=0.00  c*=0.0909  worth=132.40
+  c_floor=0.25  c*=0.3182  worth=131.97
+  c_floor=0.50  c*=0.5455  worth=113.45
+  c_floor=0.75  c*=0.7727  worth=87.34
+  c_floor=1.00  c*=1.0000  worth=81.28
+
+=== FINDING 5: independence/expertise tension (safe rotation costs throughput) ===
+legit throughput (1-v)^k vs rotation rate r (k=8):
+  r=0.00  throughput=0.851
+  r=0.02  throughput=0.553
+  r=0.05  throughput=0.394
+  r=0.10  throughput=0.299
+  r=0.25  throughput=0.225
+  r=0.50  throughput=0.197
