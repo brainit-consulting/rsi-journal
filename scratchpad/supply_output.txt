@@ -1,0 +1,45 @@
+SPAN = 55.5
+
+== Result 1: fixed supply, growing loop (h = S/D0 = 4) ==
+  L= 1  cov=1.000  worth=132.4
+  L= 2  cov=1.000  worth=132.4
+  L= 4  cov=1.000  worth=132.4
+  L= 8  cov=0.500  worth=104.65
+  L=16  cov=0.250  worth=90.78
+  L=32  cov=0.125  worth=83.84
+  worths: 132.4/132.4/132.4/104.65/90.78/83.84
+  threshold: coverage full while L <= h = 4.0
+
+== Result 2: growth-rate race (rho_D=0.10 fixed, T=100, h0=4) ==
+  rho_S=0.00  cov=0.0002  worth=76.91
+  rho_S=0.05  cov=0.0270  worth=78.4
+  rho_S=0.08  cov=0.5413  worth=106.94
+  rho_S=0.10  cov=1.0000  worth=132.4
+  rho_S=0.12  cov=1.0000  worth=132.4
+  worths: 76.91/78.4/106.94/132.4/132.4
+  only rho_S >= rho_D holds; level of supply irrelevant, growth rate decides
+
+== Result 3: caching decays with drift (cov_fresh=0.25, R=8, tau=8) ==
+  delta=0.00  nominal=1.00  validity=1.000  eff_cov=1.000  worth=132.4
+  delta=0.05  nominal=1.00  validity=0.670  eff_cov=0.670  worth=114.1
+  delta=0.10  nominal=1.00  validity=0.449  eff_cov=0.449  worth=101.84
+  delta=0.20  nominal=1.00  validity=0.202  eff_cov=0.202  worth=88.11
+  delta=0.50  nominal=1.00  validity=0.018  eff_cov=0.018  worth=77.92
+  worths: 132.4/114.1/101.84/88.11/77.92
+  caching works only for a NON-improving loop (delta=0)
+
+== Result 4: the dilemma (c_ex = 0.125, deep in the undersupplied regime) ==
+  w=0.00  honest_cov=0.125  worth=83.84
+  w=0.25  honest_cov=0.281  worth=92.51
+  w=0.50  honest_cov=0.312  worth=94.24
+  w=0.75  honest_cov=0.219  worth=89.04
+  w=1.00  honest_cov=0.000  worth=76.9
+  worths: 83.84/92.51/94.24/89.04/76.9
+  interior optimum at w=0.5, worth=94.24 << ceiling 132.4
+
+== Result 4b: the compromise optimum degrades with capability ==
+  L= 4  c_ex=1.000  best w*=0.00  best worth=132.4
+  L= 8  c_ex=0.500  best w*=0.25  best worth=108.12
+  L=16  c_ex=0.250  best w*=0.37  best worth=98.58
+  L=32  c_ex=0.125  best w*=0.44  best worth=94.46
+  L=64  c_ex=0.062  best w*=0.47  best worth=92.56
