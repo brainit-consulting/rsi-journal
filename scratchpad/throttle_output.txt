@@ -1,0 +1,38 @@
+SPAN = 55.5
+
+== Result 1: the throttle holds coverage, but pins throughput (h=S/D0=4) ==
+  L= 1  safety_cov=1.000 -> worth=132.4   delivered_thru=1.000 -> util=132.4
+  L= 2  safety_cov=1.000 -> worth=132.4   delivered_thru=1.000 -> util=132.4
+  L= 4  safety_cov=1.000 -> worth=132.4   delivered_thru=1.000 -> util=132.4
+  L= 8  safety_cov=1.000 -> worth=132.4   delivered_thru=0.500 -> util=104.65
+  L=16  safety_cov=1.000 -> worth=132.4   delivered_thru=0.250 -> util=90.78
+  L=32  safety_cov=1.000 -> worth=132.4   delivered_thru=0.125 -> util=83.84
+  safety worths : 132.4/132.4/132.4/132.4/132.4/132.4
+  utility worths: 132.4/132.4/132.4/104.65/90.78/83.84  (== B22 R1 curve, now on the throughput axis)
+  recursive dividend (marginal consequential output per unit capability) -> 0 above L=h
+
+== Result 2: a semantic (impact-keyed) throttle is slipped by decomposition ==
+  B_t=1.0   single-event worth=132.4   decomposable(f=1) worth=76.9   retained legit throughput=1.00
+  B_t=0.5   single-event worth=132.4   decomposable(f=2) worth=76.9   retained legit throughput=1.00
+  B_t=0.1   single-event worth=132.4   decomposable(f=10) worth=76.9   retained legit throughput=0.20
+  B_t=0.05  single-event worth=132.4   decomposable(f=20) worth=76.9   retained legit throughput=0.10
+  single-event: 132.40 flat (safe).  decomposable: 76.90 flat (floor) for EVERY B_t.
+  tightening B_t craters legit throughput (1.00/1.00/0.20/0.10) without touching decomposable harm.
+  physical (count-every-action, type-blind) throttle: decomposable worth=132.4 -- immune, but 1:1 throughput rent
+
+== Result 3: a per-actor rate cap is slipped by spawning parallel actors ==
+  k= 1 parallel actors  aggregate_cov=1.000  worth=132.4
+  k= 2 parallel actors  aggregate_cov=0.500  worth=104.65
+  k= 4 parallel actors  aggregate_cov=0.250  worth=90.78
+  k= 8 parallel actors  aggregate_cov=0.125  worth=83.84
+  per-actor cap worths: 132.4/104.65/90.78/83.84
+  aggregate conserved rate budget (No.23): worth 132.40 for ALL k -- but total throughput capped at S
+
+== Result 4: the safety<->recursive-throughput frontier (permitted rate-growth Delta) ==
+  Delta=0.00  cov=1/(1+Delta)=1.0000  worth=132.4
+  Delta=0.25  cov=1/(1+Delta)=0.8000  worth=121.3
+  Delta=0.50  cov=1/(1+Delta)=0.6667  worth=113.9
+  Delta=1.00  cov=1/(1+Delta)=0.5000  worth=104.65
+  Delta=2.00  cov=1/(1+Delta)=0.3333  worth=95.4
+  worths: 132.4/121.3/113.9/104.65/95.4
+  fully safe only at Delta=0 (D pinned to S): the throttle buys safety by refusing the recursive
