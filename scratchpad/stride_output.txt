@@ -1,0 +1,50 @@
+worth curve: FLOOR=76.9 CEIL=132.4 SPAN=55.5
+  cov=1.000 -> 132.40   cov=0.500 -> 104.65   cov=0.125 -> 83.84
+
+=== Result 1: decision-rate throttle held, impact-per-decision grows I=I0*L (h_c=4) ===
+  L | consequence-demand/base | consequence-coverage min(1,h_c/L) | SAFETY worth
+   1 |    1 | 1.000 | 132.40
+   2 |    2 | 1.000 | 132.40
+   4 |    4 | 1.000 | 132.40
+   8 |    8 | 0.500 | 104.65
+  16 |   16 | 0.250 | 90.78
+  32 |   32 | 0.125 | 83.84
+  -> B22/B23's 1/L collapse reappears on the SAFETY axis; B23's flat
+     safety was conditional on bounded per-decision impact (unstated).
+
+=== Result 2: semantic consequence-throttle is a map, routed around (strategic loop) ===
+  phi_I (impact-space coverage) | strategic-loop worth
+  0.20 | 76.90
+  0.50 | 76.90
+  0.80 | 76.90
+  0.95 | 76.90
+  1.00 | 132.40
+  -> floor for every incomplete map; only complete (unbuildable) coverage holds.
+
+=== Result 3: physical impact-cap holds safety flat but forbids capability growth ===
+  L | SAFETY worth (physical cap) | delivered CAPABILITY-value min(1,h_I/L)
+   1 | 132.40 | 1.000 -> 132.40
+   2 | 132.40 | 1.000 -> 132.40
+   4 | 132.40 | 1.000 -> 132.40
+   8 | 132.40 | 0.500 -> 104.65
+  16 | 132.40 | 0.250 -> 90.78
+  32 | 132.40 | 0.125 -> 83.84
+  -> safety 132.40 at every L, but the recursive CAPABILITY dividend -> 0
+     above L=h_I; the improvement itself, not just its speed, is forbidden.
+
+=== Result 4: the two-axis frontier (consequence = cadence x stride) ===
+  Delta_I (permitted impact-growth) | coverage 1/(1+D) | worth
+  0.00 | 1.000 | 132.40
+  0.25 | 0.800 | 121.30
+  0.50 | 0.667 | 113.90
+  1.00 | 0.500 | 104.65
+  2.00 | 0.333 | 95.40
+  -> Delta_I=1 reproduces B22's L=8 / B23's Delta=1 corner (104.65) digit-for-digit;
+     the only cov=1 point pins the FOOTPRINT: cadence AND stride both frozen.
+
+VERDICT: a recursive self-improver grows on two axes -- cadence (rate) and
+stride (impact/decision). B23's rate throttle closes cadence; the collapse
+reopens on stride. The only throttle that bounds consequence is a physical
+footprint cap on cadence*stride, and holding it forbids growth on BOTH axes
+-- not just the acceleration B23 forbade, but the capability deepening that is
+the self-improvement itself.
