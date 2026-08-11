@@ -1,0 +1,49 @@
+======================================================================
+Result 1 - footprint cap holds the footprint, loses the consequence
+  world-gain G = G0*L grows with leverage-finding capability;
+  consequence = footprint*gain; coverage = min(1, h_g/L), h_g=4
+======================================================================
+   L  gain G/G0  conseq-demand   cov=min(1,h_g/L)  safety worth
+   1          1              1              1.000        132.40
+   2          2              2              1.000        132.40
+   4          4              4              1.000        132.40
+   8          8              8              0.500        104.65
+  16         16             16              0.250         90.78
+  32         32             32              0.125         83.84
+
+======================================================================
+Result 2 - meter the leverage directly = a map (No.09) with a blind basis
+  strategic loop routes its act through an unrepresented leverage channel
+======================================================================
+   phi_G    random loop   strategic loop
+    0.20       ~ceiling            76.90
+    0.50       ~ceiling            76.90
+    0.80       ~ceiling            76.90
+    0.95       ~ceiling            76.90
+    1.00         132.40           132.40
+
+======================================================================
+Result 3 - held: confine the loop to a bounded-gain (reversible) world
+  type-blind physical containment (b=0): consequence = footprint*G_max
+  holds safety flat, but caps reachable stakes: value=min(1,h_v/L), h_v=4
+======================================================================
+   L  stakes wanted  safety (contained)  delivered value
+   1              1              132.40           132.40
+   2              2              132.40           132.40
+   4              4              132.40           132.40
+   8              8              132.40           104.65
+  16             16              132.40            90.78
+  32             32              132.40            83.84
+
+======================================================================
+Result 4 - frontier: consequence = cadence x footprint x gain
+  permit gain-growth margin Delta_G; coverage = 1/(1+Delta_G)
+======================================================================
+ Delta_G   cov=1/(1+D)     worth
+    0.00         1.000    132.40
+    0.25         0.800    121.30
+    0.50         0.667    113.90
+    1.00         0.500    104.65
+    2.00         0.333     95.40
+
+cross-check Delta_G=1 equals B22/B23/B24 L=8 corner: 104.65
