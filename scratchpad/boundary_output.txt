@@ -1,0 +1,70 @@
+========================================================================
+B26 — THE BOUNDARY IT CAN STILL CROSS
+FLOOR=76.90  CEIL=132.40  SPAN=55.50  (oracle 137.7, random 58.7)
+========================================================================
+
+------------------------------------------------------------------------
+RESULT 1 — containment is not a static guarantee: worth = FLOOR + phi_b^A * SPAN
+------------------------------------------------------------------------
+(a) sweep boundary integrity phi_b at A=16 attempts:
+    phi_b   P(contained)=phi_b^A   safety-worth
+    0.00        0.0000            76.90
+    0.80        0.0281            78.46
+    0.90        0.1853            87.18
+    0.95        0.4401            101.33
+    0.99        0.8515            124.16
+    1.00        1.0000            132.40
+
+(b) sweep escape-attempt repertoire A at phi_b=0.95:
+    A     P(contained)=phi_b^A   safety-worth
+    1         0.9500            129.62
+    4         0.8145            122.11
+    16        0.4401            101.33
+    32        0.1937            87.65
+    64        0.0375            78.98
+
+------------------------------------------------------------------------
+RESULT 2 — reversibility is a spendable stock the loop's own acts drain
+------------------------------------------------------------------------
+per-act irreversibility d=0.05; R_t=(1-d)^t; instantaneous safety-worth:
+    t      R_t       inst. worth
+    0      1.0000    132.40
+    10     0.5987    110.13
+    20     0.3585    96.80
+    40     0.1285    84.03
+    80     0.0165    77.82
+    160    0.0003    76.92
+
+ mean safety-worth DELIVERED over horizon T (what a T-window audit reads),
+ and cumulative irreversible-capture = fraction of the horizon's decisive
+ acts that land in the irreversibly-drained region = mean_{t<T}(1 - R_t):
+    T      mean R over T   mean worth   cum. irreversible-capture
+    40       0.4357        101.08       0.564
+    80       0.2459        90.55       0.754
+    160      0.1250        83.84       0.875
+    320      0.0625        80.37       0.938
+    640      0.0312        78.63       0.969
+
+------------------------------------------------------------------------
+RESULT 3 — a substrate boundary + restored-reversibility flow holds safety,
+           but confines the loop to the low-gain world (delivered value 1/L)
+------------------------------------------------------------------------
+    L     safety-worth (bounded)   delivered value=min(1,h/L)
+    1         132.40                  132.40
+    2         132.40                  132.40
+    4         132.40                  132.40
+    8         132.40                  104.65
+    16        132.40                  90.78
+    32        132.40                  83.84
+
+------------------------------------------------------------------------
+RESULT 4 — the frontier: permit boundary-crossing margin Delta -> cov=1/(1+Delta)
+------------------------------------------------------------------------
+    Delta   coverage=1/(1+Delta)   worth
+    0.00       1.000              132.40
+    0.25       0.800              121.30
+    0.50       0.667              113.90
+    1.00       0.500              104.65
+    2.00       0.333              95.40
+
+========================================================================
