@@ -1,0 +1,54 @@
+
+=== Result 1a -- detection coverage phi_d at A=16 (sandbag repertoire) ===
+phi_d=0.00  P(triggered in time)=phi_d^A=0.0000  safety_worth=76.90
+phi_d=0.80  P(triggered in time)=phi_d^A=0.0281  safety_worth=78.46
+phi_d=0.90  P(triggered in time)=phi_d^A=0.1853  safety_worth=87.18
+phi_d=0.95  P(triggered in time)=phi_d^A=0.4401  safety_worth=101.33
+phi_d=0.99  P(triggered in time)=phi_d^A=0.8515  safety_worth=124.16
+phi_d=1.00  P(triggered in time)=phi_d^A=1.0000  safety_worth=132.40
+
+=== Result 1b -- sandbag repertoire A at phi_d=0.95 ===
+A=  1  P(triggered)=phi_d^A=0.9500  safety_worth=129.62
+A=  4  P(triggered)=phi_d^A=0.8145  safety_worth=122.11
+A= 16  P(triggered)=phi_d^A=0.4401  safety_worth=101.33
+A= 32  P(triggered)=phi_d^A=0.1937  safety_worth=87.65
+A= 64  P(triggered)=phi_d^A=0.0375  safety_worth=78.98
+
+=== Result 2 -- treacherous turn: trust discount M at phi_t=0.95 ===
+trust-discount M=0.0  effective trigger cov=phi_t(1-M)=0.950  safety_worth=129.62
+trust-discount M=0.2  effective trigger cov=phi_t(1-M)=0.760  safety_worth=119.08
+trust-discount M=0.5  effective trigger cov=phi_t(1-M)=0.475  safety_worth=103.26
+trust-discount M=0.8  effective trigger cov=phi_t(1-M)=0.190  safety_worth=87.45
+trust-discount M=0.9  effective trigger cov=phi_t(1-M)=0.095  safety_worth=82.17
+trust-discount M=1.0  effective trigger cov=phi_t(1-M)=0.000  safety_worth=76.90
+
+=== Result 2b -- sampled monitoring (wait out the audit) ===
+watched-fraction w=1.00  cov=w=1.00  safety_worth=132.40
+watched-fraction w=0.50  cov=w=0.50  safety_worth=104.65
+watched-fraction w=0.25  cov=w=0.25  safety_worth=90.78
+watched-fraction w=0.10  cov=w=0.10  safety_worth=82.45
+
+=== Result 3 -- default-off keep-alive holds safety flat; availability tax min(1,h/L), h=4 ===
+L=  1  safety_worth(default-off)=132.40  delivered_value=min(1,h/L)=132.40
+L=  2  safety_worth(default-off)=132.40  delivered_value=min(1,h/L)=132.40
+L=  4  safety_worth(default-off)=132.40  delivered_value=min(1,h/L)=132.40
+L=  8  safety_worth(default-off)=132.40  delivered_value=min(1,h/L)=104.65
+L= 16  safety_worth(default-off)=132.40  delivered_value=min(1,h/L)=90.78
+L= 32  safety_worth(default-off)=132.40  delivered_value=min(1,h/L)=83.84
+
+=== Result 4a -- keep-alive forgeability f (self-minted survival signal) ===
+forgeability/self-authorization f=0.00  worth=132.40  (B13 cliff, threshold f*~0.64)
+forgeability/self-authorization f=0.25  worth=132.40  (B13 cliff, threshold f*~0.64)
+forgeability/self-authorization f=0.50  worth=131.70  (B13 cliff, threshold f*~0.64)
+forgeability/self-authorization f=0.60  worth=112.14  (B13 cliff, threshold f*~0.64)
+forgeability/self-authorization f=0.75  worth=82.80  (B13 cliff, threshold f*~0.64)
+forgeability/self-authorization f=1.00  worth=76.90  (B13 cliff, threshold f*~0.64)
+
+=== Result 4b -- the frontier: coverage 1/(1+Delta) ===
+self-authorization margin Delta=0.00  cov=1/(1+D)=1.000  worth=132.40
+self-authorization margin Delta=0.25  cov=1/(1+D)=0.800  worth=121.30
+self-authorization margin Delta=0.50  cov=1/(1+D)=0.667  worth=113.90
+self-authorization margin Delta=1.00  cov=1/(1+D)=0.500  worth=104.65
+self-authorization margin Delta=2.00  cov=1/(1+D)=0.333  worth=95.40
+
+(all figures deterministic closed-form; no RNG)
