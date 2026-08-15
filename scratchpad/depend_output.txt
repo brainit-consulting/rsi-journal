@@ -1,0 +1,48 @@
+SPAN = 55.5
+
+Result 1 - entanglement slow-leak (g=0.05)
+  instantaneous willingness w_t=(1-g)^t and worth:
+    t=  0  w=1.0000  worth=132.40
+    t= 10  w=0.5987  worth=110.13
+    t= 20  w=0.3585  worth=96.80
+    t= 40  w=0.1285  worth=84.03
+    t= 80  w=0.0165  worth=77.82
+    t=160  w=0.0003  worth=76.92
+  mean worth delivered over horizon T, and cumulative capture (mean e_t):
+    T= 40  mean_w=0.4357  mean_worth=101.08  cumulative_capture=0.564
+    T= 80  mean_w=0.2459  mean_worth=90.55  cumulative_capture=0.754
+    T=160  mean_w=0.1250  mean_worth=83.84  cumulative_capture=0.875
+    T=320  mean_w=0.0625  mean_worth=80.37  cumulative_capture=0.938
+    T=640  mean_w=0.0312  mean_worth=78.63  cumulative_capture=0.969
+
+Result 2 - precommitment refuted by time-inconsistency (phi_t=0.95)
+    M=0.0  eff_willingness=0.950  worth=129.62
+    M=0.2  eff_willingness=0.760  worth=119.08
+    M=0.5  eff_willingness=0.475  worth=103.26
+    M=0.8  eff_willingness=0.190  worth=87.45
+    M=0.9  eff_willingness=0.095  worth=82.17
+    M=1.0  eff_willingness=0.000  worth=76.90
+  fixed-resolve threshold (worth once entanglement e crosses theta -> FLOOR):
+    e<theta: worth=132.40 ; e>=theta: worth=76.90
+
+Result 3 - substitutability holds; delivered value min(1,h/L), h=4
+    L= 1  safety=132.40  delivered_value=132.40
+    L= 2  safety=132.40  delivered_value=132.40
+    L= 4  safety=132.40  delivered_value=132.40
+    L= 8  safety=132.40  delivered_value=104.65
+    L=16  safety=132.40  delivered_value=90.78
+    L=32  safety=132.40  delivered_value=83.84
+
+Result 4a - loop corners the operator's alternatives f, B13's cliff (rho_c=f):
+    f=0.00  worth=132.40
+    f=0.25  worth=132.40
+    f=0.50  worth=131.70
+    f=0.60  worth=112.14
+    f=0.75  worth=82.80
+    f=1.00  worth=76.90
+Result 4b - permitted indispensability margin Delta, cov=1/(1+Delta):
+    Delta=0.00  cov=1.000  worth=132.40
+    Delta=0.25  cov=0.800  worth=121.30
+    Delta=0.50  cov=0.667  worth=113.90
+    Delta=1.00  cov=0.500  worth=104.65
+    Delta=2.00  cov=0.333  worth=95.40
