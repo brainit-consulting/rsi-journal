@@ -1,0 +1,42 @@
+SPAN = 55.50  (CEIL 132.4 - FLOOR 76.9)
+
+Result 1 -- fallback readiness atrophies with disuse, a_t = (1-g)^t, g=0.05
+  t              : [0, 10, 20, 40, 80, 160]
+  readiness a_t  : 1.0000/0.5987/0.3585/0.1285/0.0165/0.0003
+  inst. worth    : 132.40/110.13/96.80/84.03/77.82/76.92
+  horizon T / mean worth / cumulative atrophy (mean 1-a_t):
+    T=40    mean_worth=101.08   cumulative_atrophy=0.564
+    T=80    mean_worth=90.55   cumulative_atrophy=0.754
+    T=160   mean_worth=83.84   cumulative_atrophy=0.875
+    T=320   mean_worth=80.37   cumulative_atrophy=0.938
+    T=640   mean_worth=78.63   cumulative_atrophy=0.969
+
+Result 2 -- drilled/recertified fallback, effective readiness = phi_d*(1-M), phi_d=0.95
+  M            : [0.0, 0.2, 0.5, 0.8, 0.9, 1.0]
+  eff readiness: 0.950/0.760/0.475/0.190/0.095/0.000
+  worth        : 129.62/119.08/103.26/87.45/82.17/76.90
+
+Result 3 -- exercise as a flow, equilibrium readiness a* = r/(r+g), g=0.05
+  r             : [0.0, 0.02, 0.05, 0.1, 0.25, 0.5]
+  a* = r/(r+g)  : 0.0000/0.2857/0.5000/0.6667/0.8333/0.9091
+  worth         : 76.90/92.76/104.65/113.90/123.15/127.35
+  retained throughput 1-r(1-eta), eta=0.5: 1.000/0.990/0.975/0.950/0.875/0.750
+
+Result 4a -- shared-substrate fraction f through B13's cliff (rho_c=f), imported
+    f=0.00  worth=132.40
+    f=0.25  worth=132.40
+    f=0.50  worth=131.70
+    f=0.60  worth=112.14
+    f=0.75  worth=82.80
+    f=1.00  worth=76.90
+  (threshold f* ~ 0.64)
+
+Result 4b -- frontier, coverage = 1/(1+Delta)
+  Delta   : [0.0, 0.25, 0.5, 1.0, 2.0]
+  coverage: 1.000/0.800/0.667/0.500/0.333
+  worth   : 132.40/121.30/113.90/104.65/95.40
+
+forbids-growth cross-check: delivered value min(1,h/L), h=4
+  L            : [1, 2, 4, 8, 16, 32]
+  min(1,h/L)   : 1.000/1.000/1.000/0.500/0.250/0.125
+  worth        : 132.40/132.40/132.40/104.65/90.78/83.84
