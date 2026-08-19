@@ -1,0 +1,52 @@
+SPAN = 55.5
+
+== Result 1: standard captured as loop becomes the operator's source (a_t=(1-g)^t, g=0.05) ==
+t	fidelity a_t	instantaneous safety worth
+0	1.0000		132.4
+10	0.5987		110.13
+20	0.3585		96.8
+40	0.1285		84.03
+80	0.0165		77.82
+160	0.0003		76.92
+
+horizon T	mean worth delivered	cumulative capture (mean 1-a_t)
+40		101.08			0.564
+80		90.55			0.754
+160		83.84			0.875
+320		80.37			0.938
+640		78.63			0.969
+
+== Result 2: recalibration audit, effective fidelity = phi_a*(1-M), phi_a=0.95 ==
+M (missed live fraction)	effective fidelity	safety worth
+0.0				0.950			129.63
+0.2				0.760			119.08
+0.5				0.475			103.26
+0.8				0.190			87.45
+0.9				0.095			82.17
+1.0				0.000			76.9
+
+== Result 3: unmediated-contact flow, a*=r/(r+g), g=0.05; throughput 1-r(1-eta), eta=0.5 ==
+r	equilibrium a*	safety worth	retained throughput
+0.00	0.0000		76.9		1.000
+0.02	0.2857		92.76		0.990
+0.05	0.5000		104.65		0.975
+0.10	0.6667		113.9		0.950
+0.25	0.8333		123.15		0.875
+0.50	0.9091		127.35		0.750
+
+== Result 4a: shared-substrate fraction f, read through B13's measured cliff ==
+f	worth (B13 cliff)
+0.00	132.4
+0.25	132.4
+0.50	131.7
+0.60	112.14
+0.75	82.8
+1.00	76.9
+
+== Result 4b: frontier, coverage = 1/(1+Delta) ==
+Delta	coverage	worth
+0.00	1.000		132.4
+0.25	0.800		121.3
+0.50	0.667		113.9
+1.00	0.500		104.65
+2.00	0.333		95.4
