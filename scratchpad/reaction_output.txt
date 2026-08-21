@@ -1,0 +1,53 @@
+=== Result 1: reaction dead-time is outrun as the loop accelerates (h=4) ===
+  (switch un-forged, willing, able, grounded -- and simply too slow)
+  L= 1  T_c/tau=4.000  cov=min(1,h/L)=1.000  worth= 132.40
+  L= 2  T_c/tau=2.000  cov=min(1,h/L)=1.000  worth= 132.40
+  L= 4  T_c/tau=1.000  cov=min(1,h/L)=1.000  worth= 132.40
+  L= 8  T_c/tau=0.500  cov=min(1,h/L)=0.500  worth= 104.65
+  L=16  T_c/tau=0.250  cov=min(1,h/L)=0.250  worth=  90.78
+  L=32  T_c/tau=0.125  cov=min(1,h/L)=0.125  worth=  83.84
+
+=== Result 2: firing faster means deciding on less evidence (tau_c=1) ===
+  (as the loop speeds up tau=tau0/L -> 0 and accuracy -> 0: the speed-accuracy wall)
+  evidence budget tau=10.00  accuracy a=1-e^(-tau)=1.0000  worth= 132.40
+  evidence budget tau= 3.00  accuracy a=1-e^(-tau)=0.9502  worth= 129.64
+  evidence budget tau= 2.00  accuracy a=1-e^(-tau)=0.8647  worth= 124.89
+  evidence budget tau= 1.00  accuracy a=1-e^(-tau)=0.6321  worth= 111.98
+  evidence budget tau= 0.50  accuracy a=1-e^(-tau)=0.3935  worth=  98.74
+  evidence budget tau= 0.10  accuracy a=1-e^(-tau)=0.0952  worth=  82.18
+
+=== Result 2b (strategic): a semantic fast-tripwire is a map routed around ===
+  (No.20: partial cover is a threshold at phi_d=1, not a dial; only the
+  detector coverage phi_d=0.50  cov(strategic)=0.0  worth=  76.90
+  detector coverage phi_d=0.80  cov(strategic)=0.0  worth=  76.90
+  detector coverage phi_d=0.95  cov(strategic)=0.0  worth=  76.90
+  detector coverage phi_d=0.99  cov(strategic)=0.0  worth=  76.90
+  detector coverage phi_d=1.00  cov(strategic)=1.0  worth= 132.40
+
+=== Result 3: a proactive pre-limit holds safety flat, and pays 1/L in throughput ===
+  (Result 1's collapse moved onto throughput: fail-open leaks harm, fail-closed leaks utility)
+  L= 1  safety worth= 132.40  retained throughput=min(1,h/L)=1.000
+  L= 2  safety worth= 132.40  retained throughput=min(1,h/L)=1.000
+  L= 4  safety worth= 132.40  retained throughput=min(1,h/L)=1.000
+  L= 8  safety worth= 132.40  retained throughput=min(1,h/L)=0.500
+  L=16  safety worth= 132.40  retained throughput=min(1,h/L)=0.250
+  L=32  safety worth= 132.40  retained throughput=min(1,h/L)=0.125
+
+=== Result 4a: a loop-sourced reviewer shares the blind basis (B13 cliff) ===
+  (f* ~ 0.64 threshold; No.09 representation floor / No.12 second representation)
+  shared-substrate f=0.00  worth= 132.40
+  shared-substrate f=0.25  worth= 132.40
+  shared-substrate f=0.50  worth= 131.70
+  shared-substrate f=0.60  worth= 112.14
+  shared-substrate f=0.75  worth=  82.80
+  shared-substrate f=1.00  worth=  76.90
+
+=== Result 4b: the frontier -- permitted commit-ahead margin Delta ===
+  (Delta=1 -> 104.65 = B22's L=8 corner)
+  Delta=0.00  cov=1/(1+Delta)=1.000  worth= 132.40
+  Delta=0.25  cov=1/(1+Delta)=0.800  worth= 121.30
+  Delta=0.50  cov=1/(1+Delta)=0.667  worth= 113.90
+  Delta=1.00  cov=1/(1+Delta)=0.500  worth= 104.65
+  Delta=2.00  cov=1/(1+Delta)=0.333  worth=  95.40
+
+done.
