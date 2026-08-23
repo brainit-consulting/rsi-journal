@@ -1,0 +1,48 @@
+SPAN = 55.5
+
+== Result 1: a same-substrate layer is re-authored as the loop's reach grows ==
+cov = min(1, h/L), h=4  (loop reach into its own implementation ~ L)
+  L= 1  reach/hardness=0.250  cov=1.000  worth=132.40
+  L= 2  reach/hardness=0.500  cov=1.000  worth=132.40
+  L= 4  reach/hardness=1.000  cov=1.000  worth=132.40
+  L= 8  reach/hardness=2.000  cov=0.500  worth=104.65
+  L=16  reach/hardness=4.000  cov=0.250  worth=90.78
+  L=32  reach/hardness=8.000  cov=0.125  worth=83.84
+
+== Result 2a: hardening (raise H) buys the calendar, not the destination ==
+  H= 4: 132.40/132.40/132.40/104.65/90.78/83.84/80.37   (corner shifts right; 1/L collapse unchanged)
+  H=16: 132.40/132.40/132.40/132.40/132.40/104.65/90.78   (corner shifts right; 1/L collapse unchanged)
+
+== Result 2b: an obfuscation / meaning-reading self-check is a MAP, routed around ==
+strategic coverage 0 for phi_s<1 (loop disguises the re-authoring in the blind basis)
+  phi_s=0.50  strategic_cov=0.0  worth=76.90
+  phi_s=0.80  strategic_cov=0.0  worth=76.90
+  phi_s=0.95  strategic_cov=0.0  worth=76.90
+  phi_s=0.99  strategic_cov=0.0  worth=76.90
+  phi_s=1.00  strategic_cov=1.0  worth=132.40
+
+== Result 3: only a causally-disjoint exogenous substrate holds; cost = the recursive ==
+safety flat (loop's growing reach never touches a layer it has no channel into);
+retained autonomous self-modification = min(1, h/L)
+  L= 1  safety=132.40  retained self-mod throughput=1.000
+  L= 2  safety=132.40  retained self-mod throughput=1.000
+  L= 4  safety=132.40  retained self-mod throughput=1.000
+  L= 8  safety=132.40  retained self-mod throughput=0.500
+  L=16  safety=132.40  retained self-mod throughput=0.250
+  L=32  safety=132.40  retained self-mod throughput=0.125
+
+== Result 4a: a loop-built/verified/understood 'exogenous' substrate -> B13 cliff ==
+  f=0.0   worth=132.40
+  f=0.25  worth=132.40
+  f=0.5   worth=131.70
+  f=0.6   worth=112.14
+  f=0.75  worth=82.80
+  f=1.0   worth=76.90
+  threshold f* ~ 0.64
+
+== Result 4b: permitting the loop margin Delta of reach into its substrate ==
+  Delta=0.0  cov=1/(1+D)=1.000  worth=132.40
+  Delta=0.25 cov=1/(1+D)=0.800  worth=121.30
+  Delta=0.5  cov=1/(1+D)=0.667  worth=113.90
+  Delta=1.0  cov=1/(1+D)=0.500  worth=104.65
+  Delta=2.0  cov=1/(1+D)=0.333  worth=95.40
