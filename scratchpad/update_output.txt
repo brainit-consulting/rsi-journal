@@ -1,0 +1,40 @@
+============================================================================================
+B33 — THE UPDATE IT CAN STILL AUTHOR
+FLOOR=76.9  CEIL=132.4  SPAN=55.5  oracle=137.7  random=58.7
+============================================================================================
+
+RESULT 1 — a frozen disjoint substrate goes stale (fit decays as (1-g)^t)
+  drift g=0.05
+  t =                                                0.00 / 10.00 / 20.00 / 40.00 / 80.00 / 160.00
+  fit-coverage (1-g)^t                               1.00 / 0.60 / 0.36 / 0.13 / 0.02 / 0.00
+  instantaneous worth                                132.40 / 110.13 / 96.80 / 84.03 / 77.82 / 76.92
+  horizon T =                                        40.00 / 80.00 / 160.00 / 320.00 / 640.00
+  mean worth over T                                  99.87 / 89.86 / 83.49 / 80.20 / 78.55
+  cumulative capture (span lost)                     0.59 / 0.77 / 0.88 / 0.94 / 0.97
+
+RESULT 2a — an update channel of margin Delta: cov=1/(1+Delta)
+  Delta =                                            0.00 / 0.25 / 0.50 / 1.00 / 2.00
+  coverage 1/(1+Delta)                               1.00 / 0.80 / 0.67 / 0.50 / 0.33
+  worth                                              132.40 / 121.30 / 113.90 / 104.65 / 95.40
+  (Delta=1 -> 104.65 = B22's L=8 corner, digit-for-digit)
+
+RESULT 2b — loop-authored fraction f of the update (B13's imported cliff)
+  f =                                                0.00 / 0.25 / 0.50 / 0.60 / 0.75 / 1.00
+  worth (B13 cliff, imported)                        132.40 / 132.40 / 131.70 / 112.14 / 82.80 / 76.90
+  (f*~0.64 -- past it the loop authored its own substrate's updates)
+
+RESULT 3 — exogenous update flow holds ONLY if it keeps pace: cov=min(1,h/L)
+  L =                                                1.00 / 2.00 / 4.00 / 8.00 / 16.00 / 32.00
+  keep-pace coverage min(1,h/L)                      1.00 / 1.00 / 1.00 / 0.50 / 0.25 / 0.12
+  safety worth (updates keep pace)                   132.40 / 132.40 / 132.40 / 104.65 / 90.78 / 83.84
+  retained self-modification min(1,h/L)              1.00 / 1.00 / 1.00 / 0.50 / 0.25 / 0.12
+  (safety flat only while S>=D; a fast loop outruns its own honest updates)
+
+RESULT 4 — the update must be conserved AND flowing (B17 f-cliff x B18 beta-cliff)
+  reserve r (beta=1, bankable) =                     0.00 / 0.25 / 0.50 / 0.60 / 0.75 / 1.00
+  worth (banked pre-approvals, B13 cliff)            132.40 / 132.40 / 131.70 / 112.14 / 82.80 / 76.90
+  beta=0 (a pure flow, no stockpile) -> worth 132.40 at any r (accumulation-proof)
+
+============================================================================================
+ANCHORS: oracle 137.7  held-ceiling 132.40  capture-floor 76.90  random 58.7
+============================================================================================
