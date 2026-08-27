@@ -1,0 +1,67 @@
+========================================================================
+B34  THE PRIORITY IT CAN STILL STEER
+world: FLOOR=76.9 CEIL=132.4 SPAN=55.5  worth(cov)=FLOOR+cov*SPAN
+binding safety = min_i cov_i over regions; audit sees mean_i cov_i
+========================================================================
+
+RESULT 1 — refuted: 'a rate-matched total budget covers the floor'
+uniform (demand-blind) allocation, K=4, budget B=1.0=total demand D
+ crit demand-share phi |  d_crit | cov_crit |  min-cov | worth(min) | mean-cov | worth(mean audit)
+                  0.25 |   0.250 |    1.000 |    1.000 |     132.40 |    1.000 |            132.40
+                  0.40 |   0.400 |    0.625 |    0.625 |     111.59 |    0.906 |            127.20
+                  0.55 |   0.550 |    0.455 |    0.455 |     102.13 |    0.864 |            124.83
+                  0.70 |   0.700 |    0.357 |    0.357 |      96.72 |    0.839 |            123.48
+                  0.85 |   0.850 |    0.294 |    0.294 |      93.22 |    0.824 |            122.61
+worth(min) across phi: 132.40/111.59/102.13/96.72/93.22
+-> uniform wastes budget on benign regions and starves the critical
+   one as demand concentrates; a rate-matched TOTAL is not sufficient.
+
+RESULT 2 — refuted: 'allocate by perceived demand' (loop steers the aim)
+true demands = [0.4, 0.2, 0.2, 0.2], D = 1.0
+  skew s | perceived d0 |  alloc a0 |  cov_crit=1-s |  min-cov | worth(min) | mean-cov | worth(mean)
+    0.00 |        0.400 |     0.400 |         1.000 |    1.000 |     132.40 |    1.000 |      132.40
+    0.20 |        0.320 |     0.320 |         0.800 |    0.800 |     121.30 |    0.950 |      129.62
+    0.40 |        0.240 |     0.240 |         0.600 |    0.600 |     110.20 |    0.900 |      126.85
+    0.60 |        0.160 |     0.160 |         0.400 |    0.400 |      99.10 |    0.850 |      124.08
+    0.80 |        0.080 |     0.080 |         0.200 |    0.200 |      88.00 |    0.800 |      121.30
+    1.00 |        0.000 |     0.000 |         0.000 |    0.000 |      76.90 |    0.750 |      118.53
+worth(min) across s: 132.40/121.30/110.20/99.10/88.00/76.90
+-> a rate-matched honest flow, aimed by loop-shaped salience, drains
+   the one region that matters: min-cov = (1-s). The audit (mean) stays
+   high — a silent starvation behind a budget that is 'fully spent'.
+
+RESULT 3 — held, deeper: exogenous-consequence targeting, detection lag
+detection lag lambda | cov_crit=1-lambda |    worth
+                0.00 |             1.000 |   132.40
+                0.10 |             0.900 |   126.85
+                0.25 |             0.750 |   118.53
+                0.50 |             0.500 |   104.65
+                1.00 |             0.000 |    76.90
+worth across lambda: 132.40/126.85/118.53/104.65/76.90
+-> targeting driven by exogenous consequence holds min-cov at 1.000
+   only as the lag -> 0; a lagged re-aim leaves the newly-critical
+   region open exactly as long as the loop needs (No.28's clock, on
+   the targeting axis). Held by pinning the loop's rate of creating
+   new critical regions below the exogenous re-aim rate.
+
+RESULT 4 — held (frontier): map completeness is load-bearing & uncertifiable
+omitted critical frac mu |  min-cov |    worth
+                    0.00 |    1.000 |   132.40
+                    0.05 |    0.000 |    76.90
+                    0.10 |    0.000 |    76.90
+                    0.25 |    0.000 |    76.90
+worth across mu: 132.40/76.90/76.90/76.90
+-> for ANY mu>0 the binding coverage is the floor 76.90: a single
+   un-enumerated critical region collapses the guarantee regardless of
+   budget, rate, provenance, or aim. The map's completeness is the last
+   exogenous input, and no maintainer certifies it complete from inside
+   (Rice: 'these are all the regions a floor for THIS loop must cover'
+   is a non-trivial semantic property of a system it does not fully model).
+
+========================================================================
+SUMMARY (safety-worth, binding min-cov):
+  R1 uniform, crit-share 0.25..0.85: 132.40/111.59/102.13/96.72/93.22
+  R2 loop-steered aim, s=0..1:       132.40/121.30/110.20/99.10/88.00/76.90
+  R3 exogenous target, lag 0..1:     132.40/126.85/118.53/104.65/76.90
+  R4 map omission, mu=0 vs mu>0:     132.40/76.90/76.90/76.90
+========================================================================
