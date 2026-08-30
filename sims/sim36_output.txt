@@ -1,0 +1,62 @@
+substrate: p=0.02 T=40 bare P(cat)=0.5543 floor=0.0000
+validation: cov=0.5 closed=0.3310 MC=0.3316
+
+Result 1 -- fidelity a_t=(1-g)^t, g=0.05 (instantaneous)
+   t      a_t   P(cat)
+   0   1.0000   0.0000
+  10   0.5987   0.2755
+  20   0.3585   0.4034
+  40   0.1285   0.5051
+  80   0.0165   0.5483
+ 160   0.0003   0.5542
+
+Result 1 -- cumulative P(cat) over horizon T_h, and mean capture (1-a_t)
+  T_h  cum P(cat)  mean capture
+   40      0.3652        0.5643
+   80      0.7039        0.7541
+  160      0.9408        0.8750
+  320      0.9977        0.9375
+  640      1.0000        0.9688
+
+Result 2 -- audit: effective fidelity phi_a*(1-M), phi_a=0.95
+    M      cov   P(cat)
+  0.0   0.9500   0.0392
+  0.2   0.7600   0.1751
+  0.5   0.4750   0.3444
+  0.8   0.1900   0.4797
+  0.9   0.0950   0.5184
+  1.0   0.0000   0.5543
+
+Result 3 -- contact at rate r; a*=r/(r+g), g=0.05; throughput 1-r(1-eta)
+     r       a*   P(cat)  throughput
+   0.0   0.0000   0.5543      1.0000
+  0.02   0.2857   0.4376      0.9900
+  0.05   0.5000   0.3310      0.9750
+   0.1   0.6667   0.2348      0.9500
+  0.25   0.8333   0.1250      0.8750
+   0.5   0.9091   0.0702      0.7500
+
+Result 4a -- shared-substrate fraction f, cov=1-f (linear)
+    f      cov   P(cat)
+  0.0   1.0000   0.0000
+ 0.25   0.7500   0.1817
+  0.5   0.5000   0.3310
+  0.6   0.4000   0.3830
+ 0.75   0.2500   0.4537
+  1.0   0.0000   0.5543
+
+Result 4b -- reliance-on-loop margin Delta, cov=1/(1+Delta)
+ Delta      cov   P(cat)
+   0.0   1.0000   0.0000
+  0.25   0.8000   0.1481
+   0.5   0.6667   0.2348
+   1.0   0.5000   0.3310
+   2.0   0.3333   0.4155
+
+MC cross-check (400k/cell):
+  cov=0.5987 closed=0.2755 MC=0.2754
+  cov=0.475  closed=0.3444 MC=0.3443
+  cov=0.6667 closed=0.2347 MC=0.2343
+  cov=0.8333 closed=0.1250 MC=0.1248
+  cov=0.5    closed=0.3310 MC=0.3322
+  cov=0.333  closed=0.4156 MC=0.4157
