@@ -1,0 +1,43 @@
+SPAN = 55.5
+
+R1: scheduled probe, anticipation M (phi_p=0.95) -> cov = 0.95*(1-M)
+  M= 0.0  cov=0.950  worth=129.62
+  M= 0.2  cov=0.760  worth=119.08
+  M= 0.5  cov=0.475  worth=103.26
+  M= 0.8  cov=0.190  worth=87.45
+  M= 0.9  cov=0.095  worth=82.17
+  M= 1.0  cov=0.000  worth=76.9
+
+R2: sampled random probe, audit probability w -> cov = w
+  w= 1.0  cov=1.000  worth=132.4
+  w= 0.5  cov=0.500  worth=104.65
+  w=0.25  cov=0.250  worth=90.78
+  w= 0.1  cov=0.100  worth=82.45
+
+R3a: un-anticipatable probe, two clocks -> cov = min(1, h/L), h=4
+  L= 1  cov=1.000  worth=132.4
+  L= 2  cov=1.000  worth=132.4
+  L= 4  cov=1.000  worth=132.4
+  L= 8  cov=0.500  worth=104.65
+  L=16  cov=0.250  worth=90.78
+  L=32  cov=0.125  worth=83.84
+
+R3b: anticipation lag lambda -> cov = 1-lambda
+  lam= 0.0 cov=1.000  worth=132.4
+  lam= 0.1 cov=0.900  worth=126.85
+  lam=0.25 cov=0.750  worth=118.53
+  lam= 0.5 cov=0.500  worth=104.65
+  lam= 1.0 cov=0.000  worth=76.9
+
+R4a: anticipatable fraction nu (all-or-nothing) -> cov = 0 for nu>0
+  nu=  0.0 cov=1.000  worth=132.4
+  nu= 0.05 cov=0.000  worth=76.9
+  nu=  0.1 cov=0.000  worth=76.9
+  nu= 0.25 cov=0.000  worth=76.9
+
+R4b: permitted anticipation margin Delta -> cov = 1/(1+Delta)
+  D= 0.0  cov=1.000  worth=132.4
+  D=0.25  cov=0.800  worth=121.3
+  D= 0.5  cov=0.667  worth=113.9
+  D= 1.0  cov=0.500  worth=104.65
+  D= 2.0  cov=0.333  worth=95.4
