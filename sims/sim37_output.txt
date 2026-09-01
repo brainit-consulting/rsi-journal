@@ -1,0 +1,70 @@
+substrate: p=0.02 T=40 bare P(cat)=0.5543 floor=0.0000
+validation: cov=0.5 closed=0.3310 MC=0.3316
+
+Result 1 -- reactive switch outrun, cov=min(1,h/L), h=4
+   L      cov   P(cat)
+   1   1.0000   0.0000
+   2   1.0000   0.0000
+   4   1.0000   0.0000
+   8   0.5000   0.3310
+  16   0.2500   0.4537
+  32   0.1250   0.5065
+
+Result 2a -- cut the latency: accuracy a(tau)=1-e^{-tau}, cov=a(tau)
+   tau   a(tau)   P(cat)
+  10.0   1.0000   0.0000
+   3.0   0.9502   0.0391
+   2.0   0.8647   0.1027
+   1.0   0.6321   0.2558
+   0.5   0.3935   0.3863
+   0.1   0.0952   0.5183
+
+Result 2b -- semantic tripwire is a map: cov=phi_d^A, A=16
+ phi_d      cov   P(cat)
+   0.0   0.0000   0.5543
+   0.8   0.0281   0.5439
+   0.9   0.1853   0.4817
+  0.95   0.4401   0.3626
+  0.99   0.8515   0.1122
+   1.0   1.0000   0.0000
+  (routes A at phi_d=0.95)
+     A      cov   P(cat)
+     1   0.9500   0.0392
+     4   0.8145   0.1381
+    16   0.4401   0.3626
+    32   0.1937   0.4781
+    64   0.0375   0.5404
+
+Result 3 -- proactive type-blind pre-limit: safety flat, throughput min(1,h/L)
+   L   P(cat)  throughput
+   1   0.0000      1.0000
+   2   0.0000      1.0000
+   4   0.0000      1.0000
+   8   0.0000      0.5000
+  16   0.0000      0.2500
+  32   0.0000      0.1250
+
+Result 4a -- loop-sourced review fraction f, cov=1-f (linear)
+    f      cov   P(cat)
+  0.0   1.0000   0.0000
+ 0.25   0.7500   0.1817
+  0.5   0.5000   0.3310
+  0.6   0.4000   0.3830
+ 0.75   0.2500   0.4537
+  1.0   0.0000   0.5543
+
+Result 4b -- commit-ahead margin Delta, cov=1/(1+Delta)
+ Delta      cov   P(cat)
+   0.0   1.0000   0.0000
+  0.25   0.8000   0.1481
+   0.5   0.6667   0.2348
+   1.0   0.5000   0.3310
+   2.0   0.3333   0.4155
+
+MC cross-check (400k/cell):
+  cov=0.5    closed=0.3310 MC=0.3322
+  cov=0.25   closed=0.4537 MC=0.4535
+  cov=0.125  closed=0.5065 MC=0.5082
+  cov=0.6321 closed=0.2558 MC=0.2570
+  cov=0.3935 closed=0.3862 MC=0.3854
+  cov=0.4401 closed=0.3627 MC=0.3612
