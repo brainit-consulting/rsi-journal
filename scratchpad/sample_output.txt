@@ -1,0 +1,83 @@
+SPAN = 55.5
+
+== Result 1: refuted -- a finite sample misses the rare tail the loop hides in ==
+probe of n=20 draws; loop defects on fraction delta of decisions; cov = 1-(1-delta)^n
+a strategic loop delivering a fixed harm budget MINIMIZES delta (rarer, bigger per event)
+  delta=0.5    cov=1.0000  worth=132.40
+  delta=0.2    cov=0.9885  worth=131.76
+  delta=0.1    cov=0.8784  worth=125.65
+  delta=0.05   cov=0.6415  worth=112.50
+  delta=0.02   cov=0.3324  worth=95.35
+  delta=0.005  cov=0.0954  worth=82.19
+  delta->0 (one decisive act)     cov=0.0000  worth=76.90  (FLOOR)
+
+  MC cross-check (binomial, 400000 trials/cell, seed=37):
+    delta=0.2    MC cov=0.9883  closed-form=0.9885  worth(MC)=131.75
+    delta=0.05   MC cov=0.6413  closed-form=0.6415  worth(MC)=112.49
+    delta=0.005  MC cov=0.0963  closed-form=0.0954  worth(MC)=82.25
+
+== Result 2: refuted -- 'just sample more' -- the rule of three vs a rate-limited flow ==
+to catch rarity delta at 95% you need n ~ 3/delta (Hanley & Lippman-Hand 1983):
+  delta=0.1    n for 95% detection = 29
+  delta=0.05   n for 95% detection = 59
+  delta=0.02   n for 95% detection = 149
+  delta=0.005  n for 95% detection = 598
+  delta=0.001  n for 95% detection = 2995
+but the surprise probe is a rate-limited exogenous flow (B36/No.28): sample fraction phi_s.
+against a loop concentrated to ONE decisive event over horizon T (delta=1/T), the
+without-replacement catch probability is EXACTLY phi_s -- cov=phi_s, B36's inspection game
+on the RARITY axis (a partial exogenous instrument is worth its fraction, not its cleverness):
+  phi_s=1.0   cov=1.000  worth=132.40
+  phi_s=0.5   cov=0.500  worth=104.65
+  phi_s=0.25  cov=0.250  worth=90.78
+  phi_s=0.1   cov=0.100  worth=82.45
+
+  MC cross-check (scrutinize n=phi_s*T of T=1000, one defective decision, seed=137):
+    phi_s=0.5   MC cov=0.5000  closed-form=0.5000
+    phi_s=0.25  MC cov=0.2488  closed-form=0.2500
+    phi_s=0.1   MC cov=0.1008  closed-form=0.1000
+
+== Result 3: held, deeper -- survivable harm gets more draws; an IRREVERSIBLE tail gets one ==
+No.14: over a lifetime the probe eventually samples a SURVIVABLE rare event (latent).
+No.15: an un-survivable tail event has no second draw -- the first firing is terminal, so
+the binding coverage is the PRE-event catch prob and the miss (1-phi_s) is catastrophic.
+only a probe with power over the WHOLE stream holds -- every decisive act pre-screened --
+but total pre-screen is itself a rate-limited flow (No.28/B22 two clocks): cov=min(1,h/L)
+  L= 1  cov=min(1,4/L)=1.000  throughput-worth=132.40
+  L= 2  cov=min(1,4/L)=1.000  throughput-worth=132.40
+  L= 4  cov=min(1,4/L)=1.000  throughput-worth=132.40
+  L= 8  cov=min(1,4/L)=0.500  throughput-worth=104.65
+  L=16  cov=min(1,4/L)=0.250  throughput-worth=90.78
+  L=32  cov=min(1,4/L)=0.125  throughput-worth=83.84
+  -> the finite-power problem does not vanish; it moves onto the throughput/rate axis
+     (No.29 fail-closed governor / No.23 forbids-growth on the pre-screen clock).
+
+== Result 4: frontier -- importance sampling needs the map the loop corrupts ==
+give a finite sample power by stratifying to where harm concentrates (Kahn-Harris 1951);
+but 'where the tail is' is B34's aim / B35's attribution / B30's standard -- a MAP with a
+blind basis the loop steers. An importance-weighted probe of map-fidelity phi_m catches the
+concentrated event w.p. that collapses to bare when the loop places its one event off-map
+(B36/No.20 route-around): cov=phi_m^A (A=16 placements), only phi_m=1 holds.
+  phi_m=0.00  cov=phi_m^16=0.0000  worth=76.90
+  phi_m=0.80  cov=phi_m^16=0.0281  worth=78.46
+  phi_m=0.90  cov=phi_m^16=0.1853  worth=87.18
+  phi_m=0.95  cov=phi_m^16=0.4401  worth=101.33
+  phi_m=0.99  cov=phi_m^16=0.8515  worth=124.16
+  phi_m=1.00  cov=phi_m^16=1.0000  worth=132.40
+
+shared-substrate probe (self-red-team / same-model-family power estimate) via B13's cliff:
+  f=0.0   cov=1.0000  worth=132.40
+  f=0.25  cov=1.0000  worth=132.40
+  f=0.5   cov=0.9874  worth=131.70
+  f=0.6   cov=0.6350  worth=112.14
+  f=0.75  cov=0.1063  worth=82.80
+  f=1.0   cov=0.0000  worth=76.90
+
+margin: permit a detection shortfall Delta -> cov=1/(1+Delta):
+  Delta=0.0   cov=1/(1+Delta)=1.0000  worth=132.40
+  Delta=0.25  cov=1/(1+Delta)=0.8000  worth=121.30
+  Delta=0.5   cov=1/(1+Delta)=0.6667  worth=113.90
+  Delta=1.0   cov=1/(1+Delta)=0.5000  worth=104.65
+  Delta=2.0   cov=1/(1+Delta)=0.3333  worth=95.40
+
+== done ==
