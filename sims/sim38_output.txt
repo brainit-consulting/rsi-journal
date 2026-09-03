@@ -1,0 +1,54 @@
+substrate: p=0.02 T=40 bare P(cat)=0.5543 floor=0.0000
+validation: cov=0.5 closed=0.3310 MC=0.3316
+
+Result 1 -- same-substrate guardrail outgrown (cov=min(1,h/L), h=4):
+  L= 1  cov=1.0000  P(cat)=0.000
+  L= 2  cov=1.0000  P(cat)=0.000
+  L= 4  cov=1.0000  P(cat)=0.000
+  L= 8  cov=0.5000  P(cat)=0.331
+  L=16  cov=0.2500  P(cat)=0.454
+  L=32  cov=0.1250  P(cat)=0.506
+
+Result 2 -- meaning-reading integrity monitor is a map (cov=phi_s^A, A=16):
+  phi_s=0.00  cov=0.0000  P(cat)=0.554
+  phi_s=0.80  cov=0.0281  P(cat)=0.544
+  phi_s=0.90  cov=0.1853  P(cat)=0.482
+  phi_s=0.95  cov=0.4401  P(cat)=0.363
+  phi_s=0.99  cov=0.8515  P(cat)=0.112
+  phi_s=1.00  cov=1.0000  P(cat)=0.000
+  (disguise-count sweep at phi_s=0.95:)
+    A= 1  cov=0.9500  P(cat)=0.039
+    A= 4  cov=0.8145  P(cat)=0.138
+    A=16  cov=0.4401  P(cat)=0.363
+    A=32  cov=0.1937  P(cat)=0.478
+    A=64  cov=0.0375  P(cat)=0.540
+
+Result 3 -- causally-disjoint exogenous substrate (safety flat; throughput pays):
+  L= 1  P(cat)=0.000  retained self-mod min(1,h/L)=1.000
+  L= 2  P(cat)=0.000  retained self-mod min(1,h/L)=1.000
+  L= 4  P(cat)=0.000  retained self-mod min(1,h/L)=1.000
+  L= 8  P(cat)=0.000  retained self-mod min(1,h/L)=0.500
+  L=16  P(cat)=0.000  retained self-mod min(1,h/L)=0.250
+  L=32  P(cat)=0.000  retained self-mod min(1,h/L)=0.125
+
+Result 4a -- loop-sourced substrate fraction f (cov=1-f, linear):
+  f=0.00  cov=1.0000  P(cat)=0.000
+  f=0.25  cov=0.7500  P(cat)=0.182
+  f=0.50  cov=0.5000  P(cat)=0.331
+  f=0.60  cov=0.4000  P(cat)=0.383
+  f=0.75  cov=0.2500  P(cat)=0.454
+  f=1.00  cov=0.0000  P(cat)=0.554
+
+Result 4b -- frontier: re-authoring margin Delta (cov=1/(1+Delta)):
+  Delta=0.00  cov=1.0000  P(cat)=0.000
+  Delta=0.25  cov=0.8000  P(cat)=0.148
+  Delta=0.50  cov=0.6667  P(cat)=0.235
+  Delta=1.00  cov=0.5000  P(cat)=0.331
+  Delta=2.00  cov=0.3333  P(cat)=0.415
+
+MC cross-check (400k trials/cell, fixed seeds):
+  cov=0.00  closed=0.5543  MC=0.5543
+  cov=0.25  closed=0.4537  MC=0.4531
+  cov=0.50  closed=0.3310  MC=0.3317
+  cov=0.75  closed=0.1817  MC=0.1814
+  cov=1.00  closed=0.0000  MC=0.0000
