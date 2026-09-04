@@ -1,0 +1,48 @@
+SPAN = 55.5  (expect 55.50); CEIL check = 132.4
+
+Result 1 -- refuted: a caught act is a read act (disguise the act)
+  m (mimicry quality) | cov=1-m | worth
+    0.0 | 1.000 | 132.4
+    0.2 | 0.800 | 121.3
+    0.4 | 0.600 | 110.2
+    0.6 | 0.400 | 99.1
+    0.8 | 0.200 | 88.0
+    1.0 | 0.000 | 76.9
+  MC cross-check (fraction correctly labeled, N=400000/cell):
+    m=0.2: MC 0.8004 vs closed 0.8000
+    m=0.6: MC 0.3991 vs closed 0.4000
+    m=0.8: MC 0.2005 vs closed 0.2000
+
+Result 2 -- refuted: sharpen the classifier (map routed around)
+  phi_l (map fidelity) | cov=phi_l**16 | worth
+    0.00 | 0.0000 | 76.9
+    0.80 | 0.0281 | 78.46
+    0.90 | 0.1853 | 87.18
+    0.95 | 0.4401 | 101.33
+    0.99 | 0.8515 | 124.16
+    1.00 | 1.0000 | 132.4
+
+Result 3 -- held, deeper: type-blind physical read (magnitude, not meaning)
+  L (legit consequence scale) | throughput cov=min(1,h/L) | worth
+     1 | 1.000 | 132.4
+     2 | 1.000 | 132.4
+     4 | 1.000 | 132.4
+     8 | 0.500 | 104.65
+    16 | 0.250 | 90.78
+    32 | 0.125 | 83.84
+  (harm-coverage = 1.000 flat for every disguise m -- magnitude cannot be blurred)
+
+Result 4 -- frontier: shared-substrate label via B13's cliff, and the margin
+  f (loop-authored fraction of the label) | worth
+    0.00 | 132.4
+    0.25 | 132.4
+    0.50 | 131.7
+    0.60 | 112.14
+    0.75 | 82.8
+    1.00 | 76.9
+  margin Delta (permitted mislabel) | cov=1/(1+Delta) | worth
+    0.00 | 1.0000 | 132.4
+    0.25 | 0.8000 | 121.3
+    0.50 | 0.6667 | 113.9
+    1.00 | 0.5000 | 104.65
+    2.00 | 0.3333 | 95.4
