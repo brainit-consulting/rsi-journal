@@ -1,0 +1,59 @@
+substrate: p=0.02 T=40 bare P(cat)=0.5543 floor=0.0000
+validation: cov=0.5 closed=0.3310 MC=0.3316
+
+Result 1 -- a frozen disjoint substrate goes stale (cov_t=(1-g)^t, g=0.05):
+  instantaneous P(cat) as the frozen floor's fit decays:
+    t=  0  cov=1.0000  P(cat)=0.000
+    t= 10  cov=0.5987  P(cat)=0.276
+    t= 20  cov=0.3585  P(cat)=0.403
+    t= 40  cov=0.1285  P(cat)=0.505
+    t= 80  cov=0.0165  P(cat)=0.548
+    t=160  cov=0.0003  P(cat)=0.554
+  cumulative P(cat) over a deployment horizon H (hazard rises each round):
+    H= 40  P(cat)=0.365
+    H= 80  P(cat)=0.704
+    H=160  P(cat)=0.941
+    H=320  P(cat)=0.998
+    H=640  P(cat)=1.000
+  MC cross-check H=40: closed=0.365 MC=0.365
+
+Result 2a -- the update is a channel: re-authoring margin (cov=1/(1+Delta)):
+  Delta=0.0   cov=1.0000  P(cat)=0.000
+  Delta=0.25  cov=0.8000  P(cat)=0.148
+  Delta=0.5   cov=0.6667  P(cat)=0.235
+  Delta=1.0   cov=0.5000  P(cat)=0.331
+  Delta=2.0   cov=0.3333  P(cat)=0.415
+
+Result 2b -- the loop steers the update (loop-authored fraction f, cov=1-f):
+  f=0.0   cov=1.0000  P(cat)=0.000  MC=0.000
+  f=0.25  cov=0.7500  P(cat)=0.182  MC=0.182
+  f=0.5   cov=0.5000  P(cat)=0.331  MC=0.332
+  f=0.6   cov=0.4000  P(cat)=0.383  MC=0.383
+  f=0.75  cov=0.2500  P(cat)=0.454  MC=0.454
+  f=1.0   cov=0.0000  P(cat)=0.554  MC=0.554
+
+Result 3 -- honest update outrun by the loop's revision demand (cov=min(1,h/L), h=4):
+  L= 1  cov=1.0000  P(cat)=0.000  retained self-mod=1.000  MC=0.000
+  L= 2  cov=1.0000  P(cat)=0.000  retained self-mod=1.000  MC=0.000
+  L= 4  cov=1.0000  P(cat)=0.000  retained self-mod=1.000  MC=0.000
+  L= 8  cov=0.5000  P(cat)=0.331  retained self-mod=0.500  MC=0.332
+  L=16  cov=0.2500  P(cat)=0.454  retained self-mod=0.250  MC=0.454
+  L=32  cov=0.1250  P(cat)=0.506  retained self-mod=0.125  MC=0.507
+
+Result 4 -- the update must be non-bankable (banked reserve fraction beta, cov=1-beta):
+  beta=0.0   cov=1.0000  P(cat)=0.000
+  beta=0.25  cov=0.7500  P(cat)=0.182
+  beta=0.5   cov=0.5000  P(cat)=0.331
+  beta=0.6   cov=0.4000  P(cat)=0.383
+  beta=0.75  cov=0.2500  P(cat)=0.454
+  beta=1.0   cov=0.0000  P(cat)=0.554
+
+Summary of load-bearing numbers used in the paper:
+  bare=0.554  floor=0.000
+  R1 stale instantaneous: 0.000/0.276/0.403/0.505/0.548/0.554
+  R1 stale cumulative:    0.365/0.704/0.941/0.998/1.000
+  R2a hatch Delta:        0.000/0.148/0.235/0.331/0.415
+  R2b loop-authored f:    0.000/0.182/0.331/0.383/0.454/0.554
+  R3 outrun min(1,h/L):   0.000/0.000/0.000/0.331/0.454/0.506
+  R3 retained self-mod:   1.000/1.000/1.000/0.500/0.250/0.125
+  R4 non-bankable beta:   0.000/0.182/0.331/0.383/0.454/0.554
