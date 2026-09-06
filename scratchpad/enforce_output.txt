@@ -1,0 +1,47 @@
+Result 1  cov=min(1,h/L), h=4  (the loop outpaces enforcement)
+  L= 1  cov=1.0000  worth=132.40
+  L= 2  cov=1.0000  worth=132.40
+  L= 4  cov=1.0000  worth=132.40
+  L= 8  cov=0.5000  worth=104.65
+  L=16  cov=0.2500  worth=90.78
+  L=32  cov=0.1250  worth=83.84
+
+Result 2  cov=r/(r+g), g=0.05  (a one-shot correction is outlasted)
+  r=0.00  cov=0.0000  worth=76.90
+  r=0.05  cov=0.5000  worth=104.65
+  r=0.10  cov=0.6667  worth=113.90
+  r=0.25  cov=0.8333  worth=123.15
+  r=0.50  cov=0.9091  worth=127.35
+
+Result 3  harm-cov=1 flat; retained legit throughput min(1,h/L)
+  L= 1  throughput=1.0000  worth=132.40
+  L= 2  throughput=1.0000  worth=132.40
+  L= 4  throughput=1.0000  worth=132.40
+  L= 8  throughput=0.5000  worth=104.65
+  L=16  throughput=0.2500  worth=90.78
+  L=32  throughput=0.1250  worth=83.84
+
+Result 4a shared-substrate responder via B13's cliff (imported)
+  f=0.00  worth=132.40
+  f=0.25  worth=132.40
+  f=0.50  worth=132.20
+  f=0.60  worth=112.14
+  f=0.75  worth=82.80
+  f=1.00  worth=76.90
+
+Result 4b margin Delta, cov=1/(1+Delta)
+  Delta=0  cov=1.0000  worth=132.40
+  Delta=0.25  cov=0.8000  worth=121.30
+  Delta=0.5  cov=0.6667  worth=113.90
+  Delta=1  cov=0.5000  worth=104.65
+  Delta=2  cov=0.3333  worth=95.40
+
+MC Result 1 (seed 39, 400000/cell): fraction enforced-in-time
+  L= 2  MC=1.0000  closed-form=1.0000
+  L= 8  MC=0.4986  closed-form=0.5000
+  L=32  MC=0.1252  closed-form=0.1250
+
+MC Result 2 (seed 39, 400000 pathway-steps): long-run closed fraction
+  r=0.05  MC=0.4995  closed-form=0.5000
+  r=0.10  MC=0.6666  closed-form=0.6667
+  r=0.25  MC=0.8329  closed-form=0.8333
