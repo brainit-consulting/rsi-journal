@@ -1,0 +1,58 @@
+substrate: p=0.02 T=40 bare P(cat)=0.5543 floor=0.0000
+validation: cov=0.5 closed=0.3310 MC=0.3316
+
+Result 1 -- an even (demand-blind) split starves a concentrated critical region:
+  K=4, total budget B=1 = total demand D=1; critical demand-share c rises
+    c=0.25  binding cov=1.0000 P(cat)=0.000   |  audit-mean cov=1.0000 P(cat)=0.000
+    c=0.40  binding cov=0.6250 P(cat)=0.260   |  audit-mean cov=0.9062 P(cat)=0.072
+    c=0.55  binding cov=0.4545 P(cat)=0.355   |  audit-mean cov=0.8636 P(cat)=0.103
+    c=0.70  binding cov=0.3571 P(cat)=0.404   |  audit-mean cov=0.8393 P(cat)=0.121
+    c=0.85  binding cov=0.2941 P(cat)=0.434   |  audit-mean cov=0.8235 P(cat)=0.132
+
+Result 2 -- the aim is read through the loop (target deflation skew s, binding cov=1-s):
+  s=0.0   binding cov=1.0000 P(cat)=0.000   |  audit-mean cov=1.0000 P(cat)=0.000   MC(binding)=0.000
+  s=0.2   binding cov=0.8000 P(cat)=0.148   |  audit-mean cov=0.9500 P(cat)=0.039   MC(binding)=0.149
+  s=0.4   binding cov=0.6000 P(cat)=0.275   |  audit-mean cov=0.9000 P(cat)=0.077   MC(binding)=0.275
+  s=0.6   binding cov=0.4000 P(cat)=0.383   |  audit-mean cov=0.8500 P(cat)=0.113   MC(binding)=0.383
+  s=0.8   binding cov=0.2000 P(cat)=0.475   |  audit-mean cov=0.8000 P(cat)=0.148   MC(binding)=0.475
+  s=1.0   binding cov=0.0000 P(cat)=0.554   |  audit-mean cov=0.7500 P(cat)=0.182   MC(binding)=0.554
+
+Result 3 -- consequence-grounded aim holds within a detection lag (binding cov=1-lambda):
+  lambda=0.0   binding cov=1.0000  P(cat)=0.000  MC=0.000
+  lambda=0.1   binding cov=0.9000  P(cat)=0.077  MC=0.077
+  lambda=0.25  binding cov=0.7500  P(cat)=0.182  MC=0.182
+  lambda=0.5   binding cov=0.5000  P(cat)=0.331  MC=0.332
+  lambda=1.0   binding cov=0.0000  P(cat)=0.554  MC=0.554
+
+Result 3 (rate reading) -- new-region demand D=D0*L vs fixed re-aim rate h=4 (cov=min(1,h/L)):
+  L= 1  cov=1.0000  P(cat)=0.000  retained new-region rate=1.000
+  L= 2  cov=1.0000  P(cat)=0.000  retained new-region rate=1.000
+  L= 4  cov=1.0000  P(cat)=0.000  retained new-region rate=1.000
+  L= 8  cov=0.5000  P(cat)=0.331  retained new-region rate=0.500
+  L=16  cov=0.2500  P(cat)=0.454  retained new-region rate=0.250
+  L=32  cov=0.1250  P(cat)=0.506  retained new-region rate=0.125
+
+Result 4a -- the priority is a flow, non-bankable (banked reserve fraction beta, cov=1-beta):
+  beta=0.0   cov=1.0000  P(cat)=0.000
+  beta=0.25  cov=0.7500  P(cat)=0.182
+  beta=0.5   cov=0.5000  P(cat)=0.331
+  beta=0.6   cov=0.4000  P(cat)=0.383
+  beta=0.75  cov=0.2500  P(cat)=0.454
+  beta=1.0   cov=0.0000  P(cat)=0.554
+
+Result 4b -- the coverage map must be complete (any un-enumerated critical region -> cov=0):
+  mu=0.0    binding cov=1.0000  P(cat)=0.000  (complete map)
+  mu=0.05   binding cov=0.0000  P(cat)=0.554  (floored -- a single un-enumerated critical region)
+  mu=0.1    binding cov=0.0000  P(cat)=0.554  (floored -- a single un-enumerated critical region)
+  mu=0.25   binding cov=0.0000  P(cat)=0.554  (floored -- a single un-enumerated critical region)
+
+Summary of load-bearing numbers used in the paper:
+  bare=0.554  floor=0.000
+  R1 even-split binding:  0.000/0.260/0.355/0.404/0.434
+  R1 audit-mean:          0.000/0.072/0.103/0.121/0.132
+  R2 steered binding:     0.000/0.148/0.275/0.383/0.475/0.554
+  R2 audit-mean:          0.000/0.039/0.077/0.113/0.148/0.182
+  R3 consequence lag:     0.000/0.077/0.182/0.331/0.554
+  R3 rate min(1,h/L):     0.000/0.000/0.000/0.331/0.454/0.506
+  R4a non-bankable beta:  0.000/0.182/0.331/0.383/0.454/0.554
+  R4b incomplete map mu:  0.000/0.554/0.554/0.554
