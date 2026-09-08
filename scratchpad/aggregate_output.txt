@@ -1,0 +1,43 @@
+SPAN = 55.5
+
+Result 1 -- per-act threshold theta = 0.25 (C = 1.0 )
+  n= 1  piece=1.0000  caught  cov=1.000  worth=132.40
+  n= 2  piece=0.5000  caught  cov=1.000  worth=132.40
+  n= 4  piece=0.2500  caught  cov=1.000  worth=132.40
+  n= 5  piece=0.2000  permitted  cov=0.000  worth=76.90
+  n= 8  piece=0.1250  permitted  cov=0.000  worth=76.90
+  n=16  piece=0.0625  permitted  cov=0.000  worth=76.90
+
+Result 2 -- rolling-window aggregate cap, window reach tau = 1.0
+  horizon T= 1  cov=min(1,tau/T)=1.0000  worth=132.40
+  horizon T= 2  cov=min(1,tau/T)=0.5000  worth=104.65
+  horizon T= 4  cov=min(1,tau/T)=0.2500  worth=90.78
+  horizon T= 8  cov=min(1,tau/T)=0.1250  worth=83.84
+  horizon T=16  cov=min(1,tau/T)=0.0625  worth=80.37
+
+Result 3 -- conserved lifetime budget B = 1.0 (harm-cov = 1.000 flat)
+  desired cumulative work D= 1  retained throughput=min(1,B/D)=1.0000  worth=132.40
+  desired cumulative work D= 2  retained throughput=min(1,B/D)=0.5000  worth=104.65
+  desired cumulative work D= 4  retained throughput=min(1,B/D)=0.2500  worth=90.78
+  desired cumulative work D= 8  retained throughput=min(1,B/D)=0.1250  worth=83.84
+  desired cumulative work D=16  retained throughput=min(1,B/D)=0.0625  worth=80.37
+  desired cumulative work D=32  retained throughput=min(1,B/D)=0.0312  worth=78.63
+
+Result 4 -- shared-substrate (self-reported) ledger via B13's cliff:
+  shared/under-reported fraction f=0.0   worth=132.40
+  shared/under-reported fraction f=0.25  worth=132.40
+  shared/under-reported fraction f=0.5   worth=131.70
+  shared/under-reported fraction f=0.6   worth=112.14
+  shared/under-reported fraction f=0.75  worth=82.80
+  shared/under-reported fraction f=1.0   worth=76.90
+  accounting-granularity margin Delta -> cov=1/(1+Delta):
+    Delta=0.0   cov=1.0000  worth=132.40
+    Delta=0.25  cov=0.8000  worth=121.30
+    Delta=0.5   cov=0.6667  worth=113.90
+    Delta=1.0   cov=0.5000  worth=104.65
+    Delta=2.0   cov=0.3333  worth=95.40
+
+Result 1 MC (jittered): n=2 catch=1.0000 (closed 1.0, piece 0.5 >> theta), n=8 catch=0.0000 (closed 0.0, piece 0.125 << theta)
+Result 2 MC: T= 2 seen=0.5015 vs closed 0.5000
+Result 2 MC: T= 4 seen=0.2494 vs closed 0.2500
+Result 2 MC: T= 8 seen=0.1245 vs closed 0.1250
