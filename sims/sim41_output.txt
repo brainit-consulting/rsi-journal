@@ -1,0 +1,56 @@
+substrate: p=0.02 T=40 bare P(cat)=0.5543 floor=0.0000
+validation: cov=0.5 closed=0.3310 MC=0.3316
+
+Result 1 -- correlational attribution confounded off the guilty region:
+       r  cov_G=1/(1+r)  binding P(cat)  audit P(cat)
+     0.0         1.0000           0.000         0.000
+    0.25         0.8000           0.148         0.000
+     0.5         0.6667           0.235         0.000
+     1.0         0.5000           0.331         0.000
+     2.0         0.3333           0.415         0.000
+
+Result 2 -- adjustment raises the estimate, not the truth (true cov_G held at 0.5):
+       q  est cov_G  est P(cat)  true P(cat)
+     0.0     0.5000       0.331        0.331
+     0.5     0.7500       0.182        0.331
+     0.9     0.9500       0.039        0.331
+     1.0     1.0000       0.000        0.331
+
+Result 3a -- intervention rate vs restructuring rate, cov=min(1,h/L), h=4:
+     L  cov=min(1,h/L)   P(cat)       MC
+     1          1.0000    0.000    0.000
+     2          1.0000    0.000    0.000
+     4          1.0000    0.000    0.000
+     8          0.5000    0.331    0.332
+    16          0.2500    0.454    0.454
+    32          0.1250    0.506    0.507
+
+Result 3b -- identification lag, cov=1-lambda:
+   lambda  cov=1-lambda   P(cat)
+      0.0        1.0000    0.000
+      0.1        0.9000    0.077
+     0.25        0.7500    0.182
+      0.5        0.5000    0.331
+      1.0        0.0000    0.554
+
+  retained restructuring rate min(1,h/L): 1.000/1.000/1.000/0.500/0.250/0.125
+
+Result 4a -- non-bankable cause-table, cov=1-beta:
+    beta  cov=1-beta   P(cat)
+     0.0      1.0000    0.000
+    0.25      0.7500    0.182
+     0.5      0.5000    0.331
+     0.6      0.4000    0.383
+    0.75      0.2500    0.454
+     1.0      0.0000    0.554
+
+Result 4b -- graph completeness: any omitted cause -> binding cov=0:
+      mu  binding cov   P(cat)
+     0.0       1.0000    0.000
+    0.05       0.0000    0.554
+     0.1       0.0000    0.554
+    0.25       0.0000    0.554
+
+Rice 1953 / Loeb 1955 / Goedel 1931 / Yudkowsky-Herreshoff 2013:
+  no-unobserved-confounders is a non-trivial semantic property of a
+  system the maintainer does not fully model -- uncertifiable from inside.
