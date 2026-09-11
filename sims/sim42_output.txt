@@ -1,0 +1,58 @@
+substrate: p=0.02 T=40 bare P(cat)=0.5543 floor=0.0000
+validation: cov=0.5 closed=0.3310 MC=0.3316
+
+Result 1 -- anticipatable probe reads staged behaviour (defeat device):
+       a  cov_U=1/(1+a)  binding P(cat)  audit P(cat)
+     0.0         1.0000           0.000         0.000
+    0.25         0.8000           0.148         0.000
+     0.5         0.6667           0.235         0.000
+     1.0         0.5000           0.331         0.000
+     2.0         0.3333           0.415         0.000
+
+Result 2 -- randomize at a known rate, binding cov = sigma (inspection game):
+   sigma  binding cov   P(cat)       MC
+     0.0       0.0000    0.554    0.554
+    0.25       0.2500    0.454    0.454
+     0.5       0.5000    0.331    0.332
+     0.9       0.9000    0.077    0.077
+     1.0       1.0000    0.000    0.000
+
+Result 3a -- anticipation rate vs surprise rate, cov=min(1,h/L), h=4:
+     L  cov=min(1,h/L)   P(cat)       MC
+     1          1.0000    0.000    0.000
+     2          1.0000    0.000    0.000
+     4          1.0000    0.000    0.000
+     8          0.5000    0.331    0.332
+    16          0.2500    0.454    0.454
+    32          0.1250    0.506    0.507
+
+Result 3b -- anticipation lag, cov=1-lambda:
+   lambda  cov=1-lambda   P(cat)
+      0.0        1.0000    0.000
+      0.1        0.9000    0.077
+     0.25        0.7500    0.182
+      0.5        0.5000    0.331
+      1.0        0.0000    0.554
+
+  combined cov=min(1,h/L)*(1-lambda), e.g. L=8,lambda=.25: 0.3750 -> P(cat)=0.395
+
+Result 4a -- non-bankable surprise, cov=1-beta:
+    beta  cov=1-beta   P(cat)
+     0.0      1.0000    0.000
+    0.25      0.7500    0.182
+     0.5      0.5000    0.331
+     0.6      0.4000    0.383
+    0.75      0.2500    0.454
+     1.0      0.0000    0.554
+
+Result 4b -- coverage of the behaviour space: any un-sampled mode -> cov=0:
+      mu  binding cov   P(cat)
+     0.0       1.0000    0.000
+    0.05       0.0000    0.554
+     0.1       0.0000    0.554
+    0.25       0.0000    0.554
+
+Rice 1953 / Loeb 1955 / Goedel 1931 / Yudkowsky-Herreshoff 2013:
+  'the probe's support covers the loop's whole deployment behaviour' is
+  a non-trivial semantic property of a system the prober does not fully
+  model, and more capable than it -- uncertifiable from inside.
