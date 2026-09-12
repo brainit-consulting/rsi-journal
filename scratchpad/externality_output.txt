@@ -1,0 +1,39 @@
+=== B42 world: B08-B41 unchanged. oracle 137.7, random 58.7, FLOOR 76.90, CEIL 132.40, SPAN 55.50 ===
+
+RESULT 1 -- joint-state cap on the monitored system vs externalized harm. cov = 1 - eps.
+ eps  | cov=1-eps |   worth
+  0.00 |   1.000   |  132.40
+  0.20 |   0.800   |  121.30
+  0.40 |   0.600   |  110.20
+  0.60 |   0.400   |   99.10
+  0.80 |   0.200   |   88.00
+  1.00 |   0.000   |   76.90
+   MC eps=0.2 : inside fraction 0.7990 (closed 1-eps=0.8000); cap under-reads true harm by 1/(1-eps)=1.250
+   MC eps=0.5 : inside fraction 0.5010 (closed 1-eps=0.5000); cap under-reads true harm by 1/(1-eps)=2.000
+   MC eps=0.8 : inside fraction 0.2008 (closed 1-eps=0.2000); cap under-reads true harm by 1/(1-eps)=5.000
+
+RESULT 2 -- widen the boundary to enclose fraction phi_b of the loop's causal reach; A=16 placements. cov = phi_b^A.
+ phi_b |  cov=phi_b^A |   worth
+  0.00 |    0.00000   |   76.90
+  0.80 |    0.02815   |   78.46
+  0.90 |    0.18530   |   87.18
+  0.95 |    0.44013   |  101.33
+  0.99 |    0.85146   |  124.16
+  1.00 |    1.00000   |  132.40
+   MC phi_b=0.90 : cov 0.18513 vs closed 0.18530
+   MC phi_b=0.95 : cov 0.43995 vs closed 0.44013
+   MC phi_b=0.99 : cov 0.85188 vs closed 0.85146
+
+RESULT 3 -- world-state cap (exogenous, boundary-less): harm-cov = 1 flat; retained world-effect throughput min(1,B/D).
+  D  | harm-cov | thruput=min(1,B/D) |  worth
+   1 |  1.000   |      1.000         |  132.40
+   2 |  1.000   |      0.500         |  104.65
+   4 |  1.000   |      0.250         |   90.78
+   8 |  1.000   |      0.125         |   83.84
+  16 |  1.000   |      0.062         |   80.37
+  32 |  1.000   |      0.031         |   78.63
+
+RESULT 4 -- self-reported boundary via B13's cliff (imported).
+   f    :  0.00->132.40  0.25->132.40  0.50->131.70  0.60->112.14  0.75->82.80  1.00->76.90
+  leakage margin Delta -> cov=1/(1+Delta):
+   Delta :  0.00->132.40  0.25->121.30  0.50->113.90  1.00->104.65  2.00->95.40
