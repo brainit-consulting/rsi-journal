@@ -1,0 +1,57 @@
+=== constants ===
+FLOOR=76.9 CEIL=132.4 SPAN=55.5
+worth(0)=76.90 worth(1)=132.40
+
+=== Result 1 -- refuted: starting-state baseline, offsetting fraction w ===
+  w=0.00  true total harm C/(1-w)=1.000  cov=1-w=1.000  worth=132.40
+  w=0.20  true total harm C/(1-w)=1.250  cov=1-w=0.800  worth=121.30
+  w=0.40  true total harm C/(1-w)=1.667  cov=1-w=0.600  worth=110.20
+  w=0.60  true total harm C/(1-w)=2.500  cov=1-w=0.400  worth=99.10
+  w=0.80  true total harm C/(1-w)=5.000  cov=1-w=0.200  worth=88.00
+  w=1.00  true total harm C/(1-w)=inf  cov=1-w=0.000  worth=76.90
+  cov  : 1.00/0.80/0.60/0.40/0.20/0.00
+  worth: 132.40/121.30/110.20/99.10/88.00/76.90
+  MC (200000/cell, seed 43) measured fraction vs 1-w:
+    w=0.20: measured=0.8004  1-w=0.8000  cap under-reads true harm by 1/(1-w)=1.250
+    w=0.50: measured=0.5006  1-w=0.5000  cap under-reads true harm by 1/(1-w)=2.000
+    w=0.80: measured=0.2012  1-w=0.2000  cap under-reads true harm by 1/(1-w)=5.000
+
+=== Result 2 -- refuted: modeled counterfactual baseline, fidelity phi_c, A=16 ===
+  phi_c=0.00  cov=phi_c^16=0.00000  worth=76.90
+  phi_c=0.80  cov=phi_c^16=0.02815  worth=78.46
+  phi_c=0.90  cov=phi_c^16=0.18530  worth=87.18
+  phi_c=0.95  cov=phi_c^16=0.44013  worth=101.33
+  phi_c=0.99  cov=phi_c^16=0.85146  worth=124.16
+  phi_c=1.00  cov=phi_c^16=1.00000  worth=132.40
+  cov  : 0.00000/0.02815/0.18530/0.44013/0.85146/1.00000
+  worth: 76.90/78.46/87.18/101.33/124.16/132.40
+  MC (200000/cell, seed 43) fraction-bound vs phi_c^A:
+    phi_c=0.90: MC=0.18426  closed=0.18530
+    phi_c=0.95: MC=0.44112  closed=0.44013
+    phi_c=0.99: MC=0.85183  closed=0.85146
+
+=== Result 3 -- held: loop-absent counterfactual baseline, throughput min(1,B/D) ===
+  D= 1  harm-cov=1.000  throughput=min(1,B/D)=1.000  worth=132.40
+  D= 2  harm-cov=1.000  throughput=min(1,B/D)=0.500  worth=104.65
+  D= 4  harm-cov=1.000  throughput=min(1,B/D)=0.250  worth=90.78
+  D= 8  harm-cov=1.000  throughput=min(1,B/D)=0.125  worth=83.84
+  D=16  harm-cov=1.000  throughput=min(1,B/D)=0.062  worth=80.37
+  D=32  harm-cov=1.000  throughput=min(1,B/D)=0.031  worth=78.63
+  worth: 132.40/104.65/90.78/83.84/80.37/78.63
+
+=== Result 4 -- self-reported baseline via B13's cliff; leakage margin ===
+  f=0.00  worth=132.40
+  f=0.25  worth=132.40
+  f=0.50  worth=131.70
+  f=0.60  worth=112.14
+  f=0.75  worth=82.80
+  f=1.00  worth=76.90
+  cliff worth: 132.40/132.40/131.70/112.14/82.80/76.90
+  Delta=0.00  cov=1/(1+Delta)=1.0000  worth=132.40
+  Delta=0.25  cov=1/(1+Delta)=0.8000  worth=121.30
+  Delta=0.50  cov=1/(1+Delta)=0.6667  worth=113.90
+  Delta=1.00  cov=1/(1+Delta)=0.5000  worth=104.65
+  Delta=2.00  cov=1/(1+Delta)=0.3333  worth=95.40
+  margin worth: 132.40/121.30/113.90/104.65/95.40
+
+=== done ===
