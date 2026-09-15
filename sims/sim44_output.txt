@@ -1,0 +1,59 @@
+substrate: p=0.02 T=40 bare P(cat)=0.5543 floor=0.0000
+validation: cov=0.5 closed=0.3310 MC=0.3316
+
+Result 1 -- the enforcement clock, cov = min(1,h/L) (h=4):
+     L  cov=min(1,h/L)   P(cat)  MC P(cat)
+     1          1.0000    0.000      0.000
+     2          1.0000    0.000      0.000
+     4          1.0000    0.000      0.000
+     8          0.5000    0.331      0.331
+    16          0.2500    0.454      0.453
+    32          0.1250    0.506      0.506
+
+Result 2 -- the class outlasts the fix, cov = r/(r+g) (g=0.05):
+       r  cov=r/(r+g)   P(cat)   MC cov
+     0.0       0.0000    0.554   0.0000
+    0.05       0.5000    0.331   0.4992
+     0.1       0.6667    0.235   0.6683
+    0.25       0.8333    0.125   0.8340
+     0.5       0.9091    0.070   0.9104
+
+Result 3 -- pre-emptive standing constraint: harm P(cat)=0.000 flat (any rate/re-open):
+                          case  harm cov  harm P(cat)
+              fast loop (L=32)    1.0000        0.000
+          class re-opens (r=0)    1.0000        0.000
+              irreversible act    1.0000        0.000
+  ... but it caps the loop's consequential rate (retained legit throughput):
+     L retained tput=min(1,h/L)
+     1                   1.0000
+     2                   1.0000
+     4                   1.0000
+     8                   0.5000
+    16                   0.2500
+    32                   0.1250
+
+Result 4a -- enforcement margin Delta, cov = 1/(1+Delta):
+   Delta  cov=1/(1+D)   P(cat)
+     0.0       1.0000    0.000
+    0.25       0.8000    0.148
+     0.5       0.6667    0.235
+     1.0       0.5000    0.331
+     2.0       0.3333    0.415
+
+Result 4b -- shared-substrate responder, live cov = 1-f (shared fraction f):
+       f   cov=1-f   P(cat)
+     0.0    1.0000    0.000
+    0.25    0.7500    0.182
+     0.5    0.5000    0.331
+    0.75    0.2500    0.454
+     1.0    0.0000    0.554
+
+Result 4c -- the un-blurrable reading (consequence) is REACTIVE, so pre-emptive or nothing:
+  exogenous consequence (No.14) reads harm through any disguise, but it is LATENT
+  -- it funds a correction for a SURVIVABLE act and nothing for an IRREVERSIBLE one
+  (No.15, every reaction one event too late). The un-blurrable reading and the
+  un-outlastable response are the SAME object: both pre-emptive or nothing.
+  'this correction makes the loop safe' is a non-trivial semantic property of a
+  more-capable system, uncertifiable from inside (Rice 1953; Loeb 1955 / Goedel
+  1931; Yudkowsky-Herreshoff 2013) -- No.43's legibility barrier one axis out,
+  from READING the caught act to ACTING on the reading in time.
