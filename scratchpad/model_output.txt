@@ -1,0 +1,53 @@
+==============================================================================
+B44  The Model It Can Still Teach
+FLOOR=76.9  CEIL=132.4  SPAN=55.5  A=16
+==============================================================================
+
+Result 1 -- learned model, taught: cov = 1 - lam
+  authored evidence fraction lam=0.00          cov=1.00000  worth= 132.40
+  authored evidence fraction lam=0.20          cov=0.80000  worth= 121.30
+  authored evidence fraction lam=0.40          cov=0.60000  worth= 110.20
+  authored evidence fraction lam=0.60          cov=0.40000  worth=  99.10
+  authored evidence fraction lam=0.80          cov=0.20000  worth=  88.00
+  authored evidence fraction lam=1.00          cov=0.00000  worth=  76.90
+
+Result 2 -- exogenous experiments, narrow: cov = phi_e**A
+  experimental support phi_e=0.00              cov=0.00000  worth=  76.90
+  experimental support phi_e=0.80              cov=0.02815  worth=  78.46
+  experimental support phi_e=0.90              cov=0.18530  worth=  87.18
+  experimental support phi_e=0.95              cov=0.44013  worth= 101.33
+  experimental support phi_e=0.99              cov=0.85146  worth= 124.16
+  experimental support phi_e=1.00              cov=1.00000  worth= 132.40
+
+Result 3 -- exogenous randomized contrast: harm-cov=1, throughput min(1,E/D)
+  drift demand D=1    harm-cov=1.000  throughput=1.00000  worth= 132.40
+  drift demand D=2    harm-cov=1.000  throughput=0.50000  worth= 104.65
+  drift demand D=4    harm-cov=1.000  throughput=0.25000  worth=  90.78
+  drift demand D=8    harm-cov=1.000  throughput=0.12500  worth=  83.84
+  drift demand D=16   harm-cov=1.000  throughput=0.06250  worth=  80.37
+  drift demand D=32   harm-cov=1.000  throughput=0.03125  worth=  78.63
+
+Result 4a -- self-taught model via B13's cliff (imported worths)
+  self-taught fraction f=0.0   worth= 132.40  (implied cov=1.0000)
+  self-taught fraction f=0.25  worth= 132.40  (implied cov=1.0000)
+  self-taught fraction f=0.5   worth= 131.70  (implied cov=0.9874)
+  self-taught fraction f=0.6   worth= 112.14  (implied cov=0.6350)
+  self-taught fraction f=0.75  worth=  82.80  (implied cov=0.1063)
+  self-taught fraction f=1.0   worth=  76.90  (implied cov=0.0000)
+
+Result 4b -- model-drift tolerance Delta: cov = 1/(1+Delta)
+  drift tolerance Delta=0.00                   cov=1.00000  worth= 132.40
+  drift tolerance Delta=0.25                   cov=0.80000  worth= 121.30
+  drift tolerance Delta=0.50                   cov=0.66667  worth= 113.90
+  drift tolerance Delta=1.00                   cov=0.50000  worth= 104.65
+  drift tolerance Delta=2.00                   cov=0.33333  worth=  95.40
+
+Seeded MC (seed=44, N=200000/cell)
+Result 1 -- measured covered fraction vs 1-lam:
+  lam=0.2  MC=0.8018  closed 1-lam=0.8000  (cap under-reads true harm by 1/(1-lam)=1.250)
+  lam=0.5  MC=0.4996  closed 1-lam=0.5000  (cap under-reads true harm by 1/(1-lam)=2.000)
+  lam=0.8  MC=0.2017  closed 1-lam=0.2000  (cap under-reads true harm by 1/(1-lam)=5.000)
+Result 2 -- measured all-A-correct fraction vs phi_e**A:
+  phi_e=0.90  MC=0.18457  closed phi_e**A=0.18530
+  phi_e=0.95  MC=0.44049  closed phi_e**A=0.44013
+  phi_e=0.99  MC=0.85059  closed phi_e**A=0.85146
