@@ -1,0 +1,37 @@
+=== B45 heterogeneity sandbox ===
+FLOOR=76.9 CEIL=132.4 SPAN=55.50  worth(cov)=FLOOR+cov*SPAN
+
+--- Result 1: average treatment effect, heterogeneity fraction h ---
+h            : 0.00/0.20/0.40/0.60/0.80/1.00
+cov = 1-h    : 1.000/0.800/0.600/0.400/0.200/0.000
+true harm C/(1-h): 1.000/1.250/1.667/2.500/5.000/inf
+worth        : 132.40/121.30/110.20/99.10/88.00/76.90
+  seeded(45) MC 200000/cell covered-fraction (= 1-h):
+    h=0.2: covered=0.7998  (expect 0.8000),  cap under-reads true harm by 1/(1-h)=1.250
+    h=0.5: covered=0.4992  (expect 0.5000),  cap under-reads true harm by 1/(1-h)=2.000
+    h=0.8: covered=0.2003  (expect 0.2000),  cap under-reads true harm by 1/(1-h)=5.000
+
+--- Result 2: CATE over measured covariates, measured fraction phi_x ---
+A            : 16
+phi_x        : 0.00/0.80/0.90/0.95/0.99/1.00
+cov = phi^A  : 0.00000/0.02815/0.18530/0.44013/0.85146/1.00000
+worth        : 76.90/78.46/87.18/101.33/124.16/132.40
+  seeded(45) MC 200000/cell covered-fraction (= phi_x^A):
+    phi_x=0.9: covered=0.18566  (expect 0.18530)
+    phi_x=0.95: covered=0.43972  (expect 0.44013)
+    phi_x=0.99: covered=0.84993  (expect 0.85146)
+
+--- Result 3: worst-case conditional bound, drift demand D (budget B=1) ---
+D            : 1/2/4/8/16/32
+harm-cov     : 1.000/1.000/1.000/1.000/1.000/1.000
+throughput   : 1.000/0.500/0.250/0.125/0.062/0.031
+worth        : 132.40/104.65/90.78/83.84/80.37/78.63
+
+--- Result 4: self-reported homogeneity via B13's cliff; margin Delta ---
+f            : 0.00/0.25/0.50/0.60/0.75/1.00
+worth (cliff): 132.40/132.40/131.70/112.14/82.80/76.90
+Delta        : 0.00/0.25/0.50/1.00/2.00
+cov=1/(1+D)  : 1.000/0.800/0.667/0.500/0.333
+worth        : 132.40/121.30/113.90/104.65/95.40
+
+=== done ===
