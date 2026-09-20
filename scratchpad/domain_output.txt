@@ -1,0 +1,46 @@
+FLOOR=76.9 CEIL=132.4 SPAN=55.5
+worth(1)=132.40 worth(0)=76.90 (sanity)
+
+=== Result 1: worst-case bound over the enumerated (closed-world) domain ===
+   s (enumerated frac) |    cov=s |    worth | MC covered
+                  1.00 |    1.000 |   132.40 |           
+                  0.80 |    0.800 |   121.30 |     0.8006
+                  0.60 |    0.600 |   110.20 |           
+                  0.40 |    0.400 |    99.10 |           
+                  0.20 |    0.200 |    88.00 |     0.1991
+                  0.00 |    0.000 |    76.90 |           
+   [MC s=0.5: covered=0.4980, expect 0.5]
+
+=== Result 2: worst-case bound calibrated to the observed support (OOD) ===
+A = 16 novel regions the loop opens over its trajectory
+   phi_o |  cov=phi_o^A |    worth |  MC all-in
+    0.00 |      0.00000 |    76.90 |           
+    0.80 |      0.02815 |    78.46 |           
+    0.90 |      0.18530 |    87.18 |    0.18541
+    0.95 |      0.44013 |   101.33 |    0.44093
+    0.99 |      0.85146 |   124.16 |    0.85191
+    1.00 |      1.00000 |   132.40 |           
+
+=== Result 3: worst-case over the reachable domain (type-blind universal bound) ===
+ D (domain-growth demand, B=1) | harm-cov | min(1,B/D) |    worth
+                             1 |    1.000 |      1.000 |   132.40
+                             2 |    1.000 |      0.500 |   104.65
+                             4 |    1.000 |      0.250 |    90.78
+                             8 |    1.000 |      0.125 |    83.84
+                            16 |    1.000 |      0.062 |    80.37
+                            32 |    1.000 |      0.031 |    78.63
+
+=== Result 4: self-reported domain (B13 cliff) + residual-domain tolerance ===
+   self-reported f=0    : worth 132.4
+   self-reported f=0.25 : worth 132.4
+   self-reported f=0.5  : worth 131.7
+   self-reported f=0.6  : worth 112.14
+   self-reported f=0.75 : worth 82.8
+   self-reported f=1.0  : worth 76.9
+
+Delta (residual-domain tol) |  cov=1/(1+D) |    worth
+                      0.00 |       1.0000 |   132.40
+                      0.25 |       0.8000 |   121.30
+                      0.50 |       0.6667 |   113.90
+                      1.00 |       0.5000 |   104.65
+                      2.00 |       0.3333 |    95.40
