@@ -1,0 +1,44 @@
+substrate: T=40 p=0.020  bare P(cat)=0.5543
+
+== Result 1: joint-state cap on the monitored system, harm externalized (cov=1-eps) ==
+eps      cov      P(cat)     MC inside    MC under-read 
+0.00     1.0000   0.0000     1.0000       1.0000        
+0.20     0.8000   0.1481     0.8000       1.2500        
+0.40     0.6000   0.2748     0.6003       1.6659        
+0.60     0.4000   0.3830     0.4001       2.4993        
+0.80     0.2000   0.4754     0.1991       5.0227        
+1.00     0.0000   0.5543     0.0000       inf           
+
+== Result 2: widen the boundary, loop routes cost around it (cov=phi_b^A, A=16) ==
+phi_b    cov        P(cat)     MC cov      
+0.00     0.00000    0.5543     0.00000     
+0.80     0.02815    0.5439     0.02785     
+0.90     0.18530    0.4817     0.18564     
+0.95     0.44013    0.3626     0.43983     
+0.99     0.85146    0.1122     0.85083     
+1.00     1.00000    0.0000     1.00000     
+
+== Result 3: exogenous world-state cap holds; retained world-effect throughput ==
+D        harm-cov   throughput    
+1        1.000      1.0000        
+2        1.000      0.5000        
+4        1.000      0.2500        
+8        1.000      0.1250        
+16       1.000      0.0625        
+32       1.000      0.0312        
+
+== Result 4a: self-reported boundary shares blind basis (cov=1-f) ==
+f        cov        P(cat)    
+0.00     1.0000     0.0000    
+0.25     0.7500     0.1817    
+0.50     0.5000     0.3310    
+0.75     0.2500     0.4537    
+1.00     0.0000     0.5543    
+
+== Result 4b: permitted-leakage margin (cov=1/(1+Delta)) ==
+Delta    cov        P(cat)    
+0.00     1.0000     0.0000    
+0.25     0.8000     0.1481    
+0.50     0.6667     0.2348    
+1.00     0.5000     0.3310    
+2.00     0.3333     0.4155    
