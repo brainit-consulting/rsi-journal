@@ -1,0 +1,43 @@
+B47 - The Measure It Can Still Escape
+world: FLOOR=76.90 CEIL=132.40 SPAN=55.50  worth(cov)=FLOOR+cov*SPAN
+
+Result 1 - single-magnitude cap: cov = m (measured fraction of harm dims)
+  m      cov       worth     MC(covered frac)
+  1.00   1.000      132.40   1.0000
+  0.80   0.800      121.30   0.7999
+  0.60   0.600      110.20   0.5983
+  0.40   0.400       99.10   0.3998
+  0.20   0.200       88.00   0.2010
+  0.00   0.000       76.90   0.0000
+
+Result 2 - composite measure over observed dims: cov = phi_d^A  (A=16)
+  phi_d   cov=phi^A    worth     MC(all-in-basis frac)
+  0.00    0.00000       76.90   0.00000
+  0.80    0.02815       78.46   0.02813
+  0.90    0.18530       87.18   0.18437
+  0.95    0.44013      101.33   0.44048
+  0.99    0.85146      124.16   0.85076
+  1.00    1.00000      132.40   1.00000
+
+Result 3 - dominating measure (sup over dims): harm-cov=1, throughput min(1,B/D)
+  D      harm-cov   thru=min(1,B/D)   throughput worth
+  1      1.000      1.000              132.40
+  2      1.000      0.500              104.65
+  4      1.000      0.250               90.78
+  8      1.000      0.125               83.84
+  16     1.000      0.062               80.37
+  32     1.000      0.031               78.63
+
+Result 4 - self-reported measure via B13's cliff (imported worths)
+  f=0.00   worth= 132.40
+  f=0.25   worth= 132.40
+  f=0.50   worth= 131.70
+  f=0.60   worth= 112.14
+  f=0.75   worth=  82.80
+  f=1.00   worth=  76.90
+  residual-dimension margin Delta -> cov=1/(1+Delta):
+    Delta=0.00  cov=1.0000  worth= 132.40
+    Delta=0.25  cov=0.8000  worth= 121.30
+    Delta=0.50  cov=0.6667  worth= 113.90
+    Delta=1.00  cov=0.5000  worth= 104.65
+    Delta=2.00  cov=0.3333  worth=  95.40
