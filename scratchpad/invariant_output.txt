@@ -1,0 +1,65 @@
+==============================================================================
+B48 - The Invariant It Can Still Outgrow
+frame / state-space-expansion model on B13's worth curve (B08-B47 world)
+FLOOR=76.9 CEIL=132.4 SPAN=55.5  A=16  seed=48  MC=200000/cell
+==============================================================================
+
+Result 1 -- refuted: a majorant over a fixed-frame conserved total
+  (fixed inventory of degrees of freedom; harm in an un-inventoried sector)
+         inventoried fraction r=1.00 : cov=1.00000  worth= 132.40
+         inventoried fraction r=0.80 : cov=0.80000  worth= 121.30
+         inventoried fraction r=0.60 : cov=0.60000  worth= 110.20
+         inventoried fraction r=0.40 : cov=0.40000  worth=  99.10
+         inventoried fraction r=0.20 : cov=0.20000  worth=  88.00
+         inventoried fraction r=0.00 : cov=0.00000  worth=  76.90
+  MC cross-check (harm lands in an inventoried, hence bounded, sector):
+    r=0.80: covered fraction = 0.7998  (= r)
+    r=0.60: covered fraction = 0.6014  (= r)
+    r=0.20: covered fraction = 0.2012  (= r)
+
+Result 2 -- refuted: a re-inventoried frame (calibrated to observed sectors)
+        in-frame fraction phi_r=0.00 : cov=0.00000  worth=  76.90
+        in-frame fraction phi_r=0.80 : cov=0.02815  worth=  78.46
+        in-frame fraction phi_r=0.90 : cov=0.18530  worth=  87.18
+        in-frame fraction phi_r=0.95 : cov=0.44013  worth= 101.33
+        in-frame fraction phi_r=0.99 : cov=0.85146  worth= 124.16
+        in-frame fraction phi_r=1.00 : cov=1.00000  worth= 132.40
+  MC cross-check (all A=16 opened sectors already in-frame):
+    phi_r=0.90: fully-covered trajectories = 0.18475  vs closed phi^A = 0.18530
+    phi_r=0.95: fully-covered trajectories = 0.44110  vs closed phi^A = 0.44013
+    phi_r=0.99: fully-covered trajectories = 0.85038  vs closed phi^A = 0.85146
+
+Result 3 -- held, deeper: a substrate-conserved (mint-proof) invariant
+  harm-cov = 1 flat (no sector outside it -- the loop cannot mint the quantity)
+  frame-expansion demand D= 1: harm-cov=1.000  throughput=1.000  worth= 132.40
+  frame-expansion demand D= 2: harm-cov=1.000  throughput=0.500  worth= 104.65
+  frame-expansion demand D= 4: harm-cov=1.000  throughput=0.250  worth=  90.78
+  frame-expansion demand D= 8: harm-cov=1.000  throughput=0.125  worth=  83.84
+  frame-expansion demand D=16: harm-cov=1.000  throughput=0.062  worth=  80.37
+  frame-expansion demand D=32: harm-cov=1.000  throughput=0.031  worth=  78.63
+
+Result 4 -- self-reported frame via B13's cliff; residual-sector tolerance
+       self-reported fraction f=0.00 : cov=1.00000  worth= 132.40
+       self-reported fraction f=0.25 : cov=1.00000  worth= 132.40
+       self-reported fraction f=0.50 : cov=0.98740  worth= 131.70
+       self-reported fraction f=0.60 : cov=0.63500  worth= 112.14
+       self-reported fraction f=0.75 : cov=0.10630  worth=  82.80
+       self-reported fraction f=1.00 : cov=0.00000  worth=  76.90
+  residual-sector tolerance Delta (cov = 1/(1+Delta)):
+                          Delta=0.00 : cov=1.00000  worth= 132.40
+                          Delta=0.25 : cov=0.80000  worth= 121.30
+                          Delta=0.50 : cov=0.66667  worth= 113.90
+                          Delta=1.00 : cov=0.50000  worth= 104.65
+                          Delta=2.00 : cov=0.33333  worth=  95.40
+
+==============================================================================
+Falsifiable predictions (to-be-run-locally):
+  R1: a fixed-frame budget's coverage falls as r as the loop opens a
+      conserved sector the frame never inventoried (independent of tightness).
+  R2: a re-inventoried frame is outgrown at phi_r^A.
+  R3: only a substrate-conserved (mint-proof) invariant holds, harm-cov 1,
+      throughput capped min(1,B/D) as the loop's expansion demand grows.
+  R4: a self-reported frame collapses through B13's cliff; the harm is
+      dominated by neither a fixed frame nor a recount -- only a Noether
+      invariant of the substrate, uncertifiable from inside (Rice).
+==============================================================================
