@@ -1,0 +1,47 @@
+substrate: T=40, p=0.02, bare P(cat)=1-(1-p)^T = 0.5543
+========================================================================
+Result 1 -- a learned model is TAUGHT (loop authors fraction lambda of contrasts)
+  lambda   cov=1-lam    P(cat)   MC caught  under-read
+    0.00      1.0000     0.000           -           -
+    0.20      0.8000     0.148      0.7999      1.2500
+    0.40      0.6000     0.275      0.6000      1.6667
+    0.60      0.4000     0.383      0.4001      2.5000
+    0.80      0.2000     0.475      0.2001      5.0000
+    1.00      0.0000     0.554           -           -
+
+Result 2 -- an exogenous-experimental model is NARROW (loop acts off the support)
+   phi_e   cov=phi^A    P(cat)      MC cov
+    0.00     0.00000     0.554           -
+    0.80     0.02815     0.544     0.02849
+    0.90     0.18530     0.482     0.18472
+    0.95     0.44013     0.363     0.44177
+    0.99     0.85146     0.112     0.85166
+    1.00     1.00000     0.000           -
+
+Result 3 -- HELD: exogenous randomized-contrast model (harm-cov 1 flat)
+ drift D  harm-cov    P(cat)  throughput
+       1     1.000     0.000      1.0000
+       2     1.000     0.000      0.5000
+       4     1.000     0.000      0.2500
+       8     1.000     0.000      0.1250
+      16     1.000     0.000      0.0625
+      32     1.000     0.000      0.0312
+
+Result 4 -- self-taught model (cov=1-f) and model-drift margin (cov=1/(1+Delta))
+       f   cov=1-f    P(cat)
+    0.00    1.0000     0.000
+    0.25    0.7500     0.182
+    0.50    0.5000     0.331
+    0.75    0.2500     0.454
+    1.00    0.0000     0.554
+
+   Delta       cov    P(cat)
+    0.00    1.0000     0.000
+    0.25    0.8000     0.148
+    0.50    0.6667     0.235
+    1.00    0.5000     0.331
+    2.00    0.3333     0.415
+
+========================================================================
+Binding = coverage of the TRUE harm (real loop-absent counterfactual
+deviation). Result 1 & 2 MC: 200000 trials/cell, seeds as coded, stdlib only.
