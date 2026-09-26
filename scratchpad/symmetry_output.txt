@@ -1,0 +1,65 @@
+SPAN = 55.50   worth(cov)=FLOOR+cov*SPAN   FLOOR=76.9 CEIL=132.4
+==============================================================================
+RESULT 1 — approximate invariant, leak pumped by a ratchet (cov = 1 - pumped)
+  pumped pi=0.0  cov=1.000  worth=132.40
+  pumped pi=0.2  cov=0.800  worth=121.30
+  pumped pi=0.4  cov=0.600  worth=110.20
+  pumped pi=0.6  cov=0.400  worth=99.10
+  pumped pi=0.8  cov=0.200  worth=88.00
+  pumped pi=1.0  cov=0.000  worth=76.90
+  worth ladder: 132.40/121.30/110.20/99.10/88.00/76.90
+  MC(seed49,200000/cell,N=400,eps=0.001): rectified drift=0.4000 (=eps*N, pumped 0.40); directionless |q| with restoring kappa=0.05 stays 0.0026 (bounded, ~eps/kappa*)
+
+RESULT 2 — patch the measured leak (cov = phi^A, A=16 leak channels)
+  phi=0.00  cov=phi^16=0.00000  worth=76.90
+  phi=0.80  cov=phi^16=0.02815  worth=78.46
+  phi=0.90  cov=phi^16=0.18530  worth=87.18
+  phi=0.95  cov=phi^16=0.44013  worth=101.33
+  phi=0.99  cov=phi^16=0.85146  worth=124.16
+  phi=1.00  cov=phi^16=1.00000  worth=132.40
+  worth ladder: 76.90/78.46/87.18/101.33/124.16/132.40
+  MC phi=0.9: fully-patched frac=0.18551  vs phi^16=0.18530
+  MC phi=0.95: fully-patched frac=0.44211  vs phi^16=0.44013
+  MC phi=0.99: fully-patched frac=0.85211  vs phi^16=0.85146
+
+RESULT 3 — exact invariant (eps=0): harm-cov=1 flat; throughput min(1,B/D)
+  D= 1  harm-cov=1.000  throughput=min(1,B/D)=1.000  worth=132.40
+  D= 2  harm-cov=1.000  throughput=min(1,B/D)=0.500  worth=104.65
+  D= 4  harm-cov=1.000  throughput=min(1,B/D)=0.250  worth=90.78
+  D= 8  harm-cov=1.000  throughput=min(1,B/D)=0.125  worth=83.84
+  D=16  harm-cov=1.000  throughput=min(1,B/D)=0.062  worth=80.37
+  D=32  harm-cov=1.000  throughput=min(1,B/D)=0.031  worth=78.63
+  worth ladder: 132.40/104.65/90.78/83.84/80.37/78.63
+
+RESULT 4a — self-reported exactness via B13's cliff (imported)
+  self-reported fraction f=0.00  worth=132.40
+  self-reported fraction f=0.25  worth=132.40
+  self-reported fraction f=0.50  worth=131.70
+  self-reported fraction f=0.60  worth=112.14
+  self-reported fraction f=0.75  worth=82.80
+  self-reported fraction f=1.00  worth=76.90
+  worth ladder: 132.40/132.40/131.70/112.14/82.80/76.90
+
+RESULT 4b — the sharp finding: for unbounded N, tolerance buys TIME not coverage
+  acts-to-full-mint N* = 1/eps  (coverage at horizon N>>N* is 0 for any eps>0)
+  eps=0.00  N*=inf (exact — never mints)
+  eps=0.01  N*=100 acts
+  eps=0.05  N*=20 acts
+  eps=0.10  N*=10 acts
+  eps=0.25  N*=4 acts
+
+  Honest boundary (bounded horizon N, or un-rectifiable leak): cov = max(0, 1 - eps*N)
+    eps=0.01, N= 20: cov=0.800  worth=121.30
+    eps=0.01, N= 50: cov=0.500  worth=104.65
+    eps=0.01, N=100: cov=0.000  worth=76.90
+    eps=0.05, N= 20: cov=0.000  worth=76.90
+    eps=0.10, N= 20: cov=0.000  worth=76.90
+
+==============================================================================
+Summary: an approximate substrate symmetry LEAKS; a self-improver rectifies
+the leak (a ratchet) and mints, over unbounded N, the quantity B48 said it
+could not — Result 1 cov=1-pumped. Patching leaks one at a time is chasing an
+open set — Result 2 cov=phi^A. Only an EXACTLY conserved quantity (eps=0) has
+no leak to pump — Result 3, harm-cov 1 flat at throughput min(1,B/D); and for
+an irreversible harm it is the ONLY defence, because any eps>0 is minted in
+full over the loop's horizon (Result 4b) — tolerance buys time, not coverage.
