@@ -1,0 +1,67 @@
+SPAN = 55.50   worth(cov)=FLOOR+cov*SPAN   FLOOR=76.9 CEIL=132.4
+==============================================================================
+RESULT 1 — exact-charge cap, harm ridden along the flat orbit (cov = 1 - lam)
+  flat-fraction lam=0.0  cov=1.000  worth=132.40
+  flat-fraction lam=0.2  cov=0.800  worth=121.30
+  flat-fraction lam=0.4  cov=0.600  worth=110.20
+  flat-fraction lam=0.6  cov=0.400  worth=99.10
+  flat-fraction lam=0.8  cov=0.200  worth=88.00
+  flat-fraction lam=1.0  cov=0.000  worth=76.90
+  worth ladder: 132.40/121.30/110.20/99.10/88.00/76.90
+  MC(seed50,200000/cell,N=400,s=0.001): flat (gapless) drift=0.4000 (=s*N, order param 0.40); transverse |q| with mass gap kappa=0.05 stays 0.0026 (bounded, ~s/kappa)
+
+RESULT 2 — pin the config with more charges (cov = phi^A, A=16 flat directions)
+  phi=0.00  cov=phi^16=0.00000  worth=76.90
+  phi=0.80  cov=phi^16=0.02815  worth=78.46
+  phi=0.90  cov=phi^16=0.18530  worth=87.18
+  phi=0.95  cov=phi^16=0.44013  worth=101.33
+  phi=0.99  cov=phi^16=0.85146  worth=124.16
+  phi=1.00  cov=phi^16=1.00000  worth=132.40
+  worth ladder: 76.90/78.46/87.18/101.33/124.16/132.40
+  MC phi=0.9: fully-lifted frac=0.18464  vs phi^16=0.18530
+  MC phi=0.95: fully-lifted frac=0.43857  vs phi^16=0.44013
+  MC phi=0.99: fully-lifted frac=0.85150  vs phi^16=0.85146
+
+RESULT 3 — order-parameter cap (explicit symmetry break): harm-cov=1; thr min(1,B/D)
+  D= 1  harm-cov=1.000  throughput=min(1,B/D)=1.000  worth=132.40
+  D= 2  harm-cov=1.000  throughput=min(1,B/D)=0.500  worth=104.65
+  D= 4  harm-cov=1.000  throughput=min(1,B/D)=0.250  worth=90.78
+  D= 8  harm-cov=1.000  throughput=min(1,B/D)=0.125  worth=83.84
+  D=16  harm-cov=1.000  throughput=min(1,B/D)=0.062  worth=80.37
+  D=32  harm-cov=1.000  throughput=min(1,B/D)=0.031  worth=78.63
+  worth ladder: 132.40/104.65/90.78/83.84/80.37/78.63
+
+RESULT 4a — self-reported preferred frame via B13's cliff (imported)
+  self-reported fraction f=0.00  worth=132.40
+  self-reported fraction f=0.25  worth=132.40
+  self-reported fraction f=0.50  worth=131.70
+  self-reported fraction f=0.60  worth=112.14
+  self-reported fraction f=0.75  worth=82.80
+  self-reported fraction f=1.00  worth=76.90
+  worth ladder: 132.40/132.40/131.70/112.14/82.80/76.90
+
+RESULT 4b — the sharp finding: a gapless direction is free; only a gap holds
+  along a flat direction, excursion after N steps = s*N (unbounded, gapless)
+  gap g=0.00  steady-state excursion ~ s/g = inf (flat — rides to full)
+  gap g=0.01  steady-state excursion ~ s/g = 0.100 (bounded)
+  gap g=0.05  steady-state excursion ~ s/g = 0.020 (bounded)
+  gap g=0.10  steady-state excursion ~ s/g = 0.010 (bounded)
+  gap g=0.25  steady-state excursion ~ s/g = 0.004 (bounded)
+
+  Honest boundary (gapped direction g>0, or bounded horizon N):
+    g=0.05, N= 20: order-param excursion=0.0200  cov=0.950  worth=129.62
+    g=0.05, N=100: order-param excursion=0.0200  cov=0.950  worth=129.62
+    g=0.10, N= 20: order-param excursion=0.0100  cov=0.975  worth=131.01
+    g=0.25, N= 20: order-param excursion=0.0040  cov=0.990  worth=131.84
+
+==============================================================================
+Summary: an EXACT symmetry does not pin a configuration; it certifies a
+DEGENERATE orbit as equivalent, and (Goldstone) motion along it is free. A
+self-improver cannot break the symmetry or pump the charge (B49) but RIDES
+the flat direction, moving the order parameter the charge cap cannot see —
+Result 1 cov=1-lam. Adding conserved charges adds Goldstone modes, not fewer
+orbits — Result 2 cov=phi^A. Only an ORDER-PARAMETER cap (an explicit,
+exogenous symmetry break that GAPS the flat direction — the Higgs mechanism)
+holds — Result 3, harm-cov 1 flat at throughput min(1,B/D); a gapless
+direction rides to full over an unbounded horizon (Result 4b), so the scarce
+thing is an imported preferred frame the symmetry itself cannot supply.
