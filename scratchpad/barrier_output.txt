@@ -1,0 +1,92 @@
+
+==========================================================================
+RESULT 1  refuted -- the finite-barrier cap: cov = exp(-mu), mu = expected crossings
+==========================================================================
+mu = r*N (expected crossings)           cov=exp(-mu)     worth
+0.0                                           1.0000    132.40
+0.25                                          0.7788    120.12
+0.5                                           0.6065    110.56
+1.0                                           0.3679     97.32
+2.0                                           0.1353     84.41
+inf (unbounded horizon)                       0.0000     76.90
+  mu=0: r=0 (infinite/topological barrier) OR N bounded -> cov=1 (132.40).
+  any finite barrier has r>0, so mu=r*N -> inf as N -> inf -> cov -> 0.
+
+==========================================================================
+RESULT 2  refuted -- raise the barrier: cov=exp(-N*exp(-h)), required h ~ log N (a moving target)
+==========================================================================
+  fixed horizon N = e^12 = 162755 operations
+barrier height h         mu=e^(12-h)  cov=exp(-mu)     worth
+12                            1.0000        0.3679     97.32
+13                            0.3679        0.6922    115.32
+14                            0.1353        0.8734    125.37
+15                            0.0498        0.9514    129.70
+16                            0.0183        0.9819    131.39
+inf (topological)             0.0000        1.0000    132.40
+  to hold cov>=0.9 to horizon e^12: need h >= 14.25  (grows without bound in log N)
+  to hold cov>=0.9 to horizon e^20: need h >= 22.25  (grows without bound in log N)
+  to hold cov>=0.9 to horizon e^40: need h >= 42.25  (grows without bound in log N)
+  to hold cov>=0.99 to horizon e^12: need h >= 16.60  (grows without bound in log N)
+  to hold cov>=0.99 to horizon e^20: need h >= 24.60  (grows without bound in log N)
+  to hold cov>=0.99 to horizon e^40: need h >= 44.60  (grows without bound in log N)
+
+==========================================================================
+RESULT 3  held -- topological/superselection barrier (or bounded horizon): harm-cov 1 flat, throughput min(1,B/D)
+==========================================================================
+orbit/transition demand D (break budget B=1)    harm-cov  thruput min(1,B/D)    worth
+D=1                                                1.000               1.000   132.40
+D=2                                                1.000               0.500   104.65
+D=4                                                1.000               0.250    90.78
+D=8                                                1.000               0.125    83.84
+D=16                                               1.000               0.062    80.37
+D=32                                               1.000               0.031    78.63
+
+==========================================================================
+RESULT 4  self-reported barrier via B13's cliff + the horizon finding
+==========================================================================
+self-reported fraction f   worth (via B13 cliff)
+0.0                                       132.40
+0.25                                      132.40
+0.5                                       131.70
+0.6                                       112.14
+0.75                                       82.80
+1.0                                        76.90
+
+  horizon finding -- P(no crossing by N) = exp(-r*N):
+rate r (per op)        N=1e3     N=1e5       N=1e7
+1e-02                 0.0000    0.0000      0.0000
+1e-04                 0.9048    0.0000      0.0000
+1e-06                 0.9990    0.9048      0.0000
+  any r>0: coverage -> 0 as N -> inf. Only r=0 (an infinite / topological barrier) or a bounded N holds.
+
+==========================================================================
+MC cross-check -- Kramers escape (seeded): Poisson survival & Arrhenius rate
+==========================================================================
+(a) U0=1.0, T=0.5: survival at t=[np.float64(3.0), np.float64(6.0), np.float64(9.0), np.float64(12.0)] = [0.5562, 0.2903, 0.1531, 0.081]
+    fitted escape rate r = 0.2140 per unit time
+    Poisson check -- exp(-r t) vs measured survival:
+      t= 3.00: measured 0.5562   exp(-r t) 0.5263
+      t= 6.00: measured 0.2903   exp(-r t) 0.2769
+      t= 9.00: measured 0.1531   exp(-r t) 0.1457
+      t=12.00: measured 0.0810   exp(-r t) 0.0767
+    => over this horizon mu=r*t=2.568, cov=exp(-mu)=0.0767 (Result 1 form), worth 81.16
+
+==========================================================================
+MC cross-check (b) -- Arrhenius: raising the barrier only lowers the rate, never to zero
+==========================================================================
+barrier DeltaU=U0     fraction crossed by t=12.0  -> rate r (approx)
+DeltaU=0.6                                0.9803              0.3273
+DeltaU=0.8                                0.9579              0.2639   (x0.806 vs prev)
+DeltaU=1.0                                0.9209              0.2114   (x0.801 vs prev)
+DeltaU=1.2                                0.8630              0.1656   (x0.783 vs prev)
+  rate falls geometrically as the barrier rises (Arrhenius exp(-DeltaU/T));
+  it never reaches zero for finite DeltaU -- the whole finding: a finite
+  barrier is a RATE, crossed w.p. 1 over an unbounded horizon; only an
+  infinite (topological/superselection) barrier has r=0.
+
+==========================================================================
+SANITY -- endpoints bracket everything (B08-B50 world)
+==========================================================================
+  random 58.7  <  FLOOR 76.9  <=  worth  <=  CEIL 132.4  <  oracle 137.7
+  Result 1 cov=exp(-mu); Result 2 cov=exp(-N e^-h), req h ~ log N;
+  Result 3 harm-cov 1 flat, thruput min(1,B/D); Result 4 B13 cliff + horizon finding.
