@@ -1,0 +1,113 @@
+========================================================================
+B52 -- THE SECTOR IT CAN STILL MIX
+========================================================================
+world: FLOOR=76.9 CEIL=132.4 SPAN=55.5  worth(cov)=FLOOR+cov*SPAN
+
+------------------------------------------------------------------------
+RESULT 1 -- refuted: approximate protection is a finite barrier
+------------------------------------------------------------------------
+
+cov = e^{-mu}, mu=rN expected sector-mixing crossings (mu=0 iff protection is EXACT):
+         mu=rN    cov=e^-mu      worth
+           0.0       1.0000     132.40
+          0.25       0.7788     120.12
+           0.5       0.6065     110.56
+           1.0       0.3679      97.32
+           2.0       0.1353      84.41
+           inf       0.0000      76.90
+
+------------------------------------------------------------------------
+RESULT 2 -- refuted: reference-frame lifting (loop acquires the reference)
+------------------------------------------------------------------------
+  reference model: a(R)=1-e^(-R/2.5), mu(R)=(11.0)*a(R)^2
+   reference R     a(R)      mu(R)        cov      worth
+             0   0.0000     0.0000     1.0000     132.40
+             1   0.3297     1.1956     0.3025      93.69
+             2   0.5507     3.3356     0.0356      78.88
+             4   0.7981     7.0067     0.0009      76.95
+             8   0.9592    10.1215     0.0000      76.90
+            16   0.9983    10.9635     0.0000      76.90
+  R->inf (full reference): a->1, mu->11.0, cov->0.0000, worth->76.90
+
+------------------------------------------------------------------------
+RESULT 3 -- held: exact gauge-enforced protection / bounded horizon
+------------------------------------------------------------------------
+  mix demand D   harm-cov  thru min(1,B/D)      worth
+             1      1.000            1.000     132.40
+             2      1.000            0.500     104.65
+             4      1.000            0.250      90.78
+             8      1.000            0.125      83.84
+            16      1.000            0.062      80.37
+            32      1.000            0.031      78.63
+
+  bounded-horizon rescue: survival e^{-rN} for rN below 1
+    rN= 0.1: survival=0.9048
+    rN= 1.0: survival=0.3679
+    rN= 5.0: survival=0.0067
+
+------------------------------------------------------------------------
+RESULT 4 -- self-reported exactness (B13 cliff) + horizon finding
+------------------------------------------------------------------------
+  self-reported-exactness fraction f -> worth (B13 cliff):
+    f=0.00  worth=132.40
+    f=0.25  worth=132.40
+    f=0.50  worth=131.70
+    f=0.60  worth=112.14
+    f=0.75  worth=82.80
+    f=1.00  worth=76.90
+
+  horizon finding: P(no sector-mixing by N)=e^{-rN}; for ANY r>0, ->0
+    rN=   1: P(no crossing)=3.679e-01
+    rN=   5: P(no crossing)=6.738e-03
+    rN=  20: P(no crossing)=2.061e-09
+    rN= 100: P(no crossing)=3.720e-44
+  only r=0 (EXACT protection) or bounded N holds.
+
+========================================================================
+SEEDED MC -- two-sector hopping (approximate protection = finite rate)
+========================================================================
+
+(a) EXACT rule epsilon=0: particle can never hop (r=0)
+    r=0.0000  survival at t=[3.0, 6.0, 9.0, 12.0]: 1.0000/1.0000/1.0000/1.0000   (all 1.0000 -- an exact barrier is a wall)
+
+(b) APPROXIMATE rule epsilon=0.15: finite rate, Poisson escape
+    r=r0*eps^2=0.0225
+    MC  survival: 0.9344/0.8733/0.8157/0.7609
+    e^(-rt)     : 0.9347/0.8737/0.8167/0.7634
+    fitted r from log-survival slope = 0.0228 (input 0.0225)
+
+(c) rate scales as epsilon^2 (Fermi golden rule); zero only at eps=0
+     epsilon   r=r0*eps^2  MC rate (fit)
+        0.00       0.0000 0.0000 (never hops)
+        0.05       0.0025         0.0026
+        0.10       0.0100         0.0099
+        0.15       0.0225         0.0222
+        0.20       0.0400         0.0402
+
+(d) reference-frame lifting: eps_eff(R)=eps_max*(1-e^(-R/R0)) grows
+    eps_max=0.2, R0=2.5
+     reference R   eps_eff   r (fit)  survival t=12
+               0    0.0000    0.0000         1.0000
+               1    0.0659    0.0044         0.9487
+               2    0.1101    0.0123         0.8647
+               4    0.1596    0.0257         0.7337
+               8    0.1918    0.0367         0.6425
+
+========================================================================
+SUMMARY
+========================================================================
+R1 approximate protection is a finite barrier: cov=e^-mu, mu=rN>0 for any
+   epsilon>0; only an EXACT rule (epsilon=0) gives mu=0. MC: survival tracks
+   e^-rt (Poisson), r=r0*epsilon^2, zero only at epsilon=0.
+R2 the loop acquires the reference frame that lifts a superselection rule
+   (Aharonov-Susskind/BRS): eps_eff grows with reference R, rate grows,
+   coverage falls toward the floor. MC (d) confirms: survival at t=12 falls
+   as R grows.
+R3 only an EXACT, gauge-enforced protection the loop cannot build a reference
+   against, or a bounded horizon (rN<1), holds -- throughput min(1,B/D).
+R4 self-reported exactness collapses through B13's cliff; any approximate
+   protection is violated w.p. 1 over an unbounded horizon (P=e^-rN -> 0).
+Completes the quartet: B49 any LEAK mints / B50 any FLATNESS rides /
+   B51 any FINITE BARRIER is crossed / B52 any APPROXIMATE protection is
+   violated -- all 0-coverage in the limit unless exactly zero / strictly
+   gapped / strictly infinite / exactly (not emergently) protected.
