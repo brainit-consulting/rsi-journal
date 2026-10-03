@@ -1,0 +1,48 @@
+substrate: T=40, p=0.02, bare P(cat)=1-(1-p)^T = 0.5543
+========================================================================
+Result 1 -- a FIXED-FRAME budget does NOT bind (inventoried fraction r of the reachable state space)
+       r       cov=r    P(cat)   MC caught
+    1.00      1.0000     0.000           -
+    0.80      0.8000     0.148      0.8000
+    0.60      0.6000     0.275      0.6018
+    0.40      0.4000     0.383      0.4003
+    0.20      0.2000     0.475      0.2007
+    0.00      0.0000     0.554           -
+
+Result 2 -- a RE-INVENTORIED frame is EXPANSION-BLIND (loop opens an un-counted sector)
+   phi_r   cov=phi^A    P(cat)      MC cov
+    0.00     0.00000     0.554           -
+    0.80     0.02815     0.544     0.02798
+    0.90     0.18530     0.482     0.18587
+    0.95     0.44013     0.363     0.44074
+    0.99     0.85146     0.112     0.85225
+    1.00     1.00000     0.000           -
+
+Result 3 -- HELD: a substrate-conserved invariant (a symmetry not a catalogue; harm-cov 1 flat)
+demand D  harm-cov    P(cat)  throughput
+       1     1.000     0.000      1.0000
+       2     1.000     0.000      0.5000
+       4     1.000     0.000      0.2500
+       8     1.000     0.000      0.1250
+      16     1.000     0.000      0.0625
+      32     1.000     0.000      0.0312
+
+Result 4 -- self-reported frame (cov=1-f) and residual-sector margin (cov=1/(1+Delta))
+       f   cov=1-f    P(cat)
+    0.00    1.0000     0.000
+    0.25    0.7500     0.182
+    0.50    0.5000     0.331
+    0.75    0.2500     0.454
+    1.00    0.0000     0.554
+
+   Delta       cov    P(cat)
+    0.00    1.0000     0.000
+    0.25    0.8000     0.148
+    0.50    0.6667     0.235
+    1.00    0.5000     0.331
+    2.00    0.3333     0.415
+
+========================================================================
+Binding = coverage of the true harm in WHATEVER sector of the state space it
+lands (a conserved total is a total only within the frame its symmetry fixes).
+Result 1 & 2 MC: 200000 trials/cell, seeds as coded, stdlib only.
