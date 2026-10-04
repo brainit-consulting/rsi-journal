@@ -1,0 +1,128 @@
+========================================================================
+B53 -- THE CONSERVATION IT CAN STILL ANOMALIZE
+========================================================================
+world: FLOOR=76.9 CEIL=132.4 SPAN=55.5  worth(cov)=FLOOR+cov*SPAN
+
+------------------------------------------------------------------------
+RESULT 1 -- refuted: an exact symmetry can have a non-conserved current
+------------------------------------------------------------------------
+
+cov = e^{-mu}, mu=rN expected anomalous charge-crossings (mu=0 iff ANOMALY-FREE, A=0):
+         mu=rN    cov=e^-mu      worth
+           0.0       1.0000     132.40
+          0.25       0.7788     120.12
+           0.5       0.6065     110.56
+           1.0       0.3679      97.32
+           2.0       0.1353      84.41
+           inf       0.0000      76.90
+
+------------------------------------------------------------------------
+RESULT 2 -- refuted: Adler-Bardeen (rate indep. of coupling) + sourcing
+------------------------------------------------------------------------
+  (i) a NAIVE perturbative leak vanishes as the coupling g shrinks;
+      the ANOMALOUS rate does NOT (Adler-Bardeen, one-loop exact):
+    coupling g  r_pert=r0*g^2  r_anom=r0*A*phi
+           1.0       0.150000         0.022500
+           0.5       0.037500         0.022500
+          0.25       0.009375         0.022500
+           0.1       0.001500         0.022500
+          0.01       0.000015         0.022500
+      -> weaker coupling buys nothing against the anomaly.
+
+  (ii) the loop sources topological flux phi (winding it accumulates);
+       mu(phi)=mu0*phi grows, coverage falls toward the floor:
+      flux phi   mu=mu0*phi        cov      worth
+             0       0.0000     1.0000     132.40
+             1       0.7500     0.4724     103.12
+             2       1.5000     0.2231      89.28
+             4       3.0000     0.0498      79.66
+             8       6.0000     0.0025      77.04
+            16      12.0000     0.0000      76.90
+
+------------------------------------------------------------------------
+RESULT 3 -- held: anomaly-free / 't Hooft-matched / bounded horizon
+------------------------------------------------------------------------
+  cross demand D   harm-cov  thru min(1,B/D)      worth
+               1      1.000            1.000     132.40
+               2      1.000            0.500     104.65
+               4      1.000            0.250      90.78
+               8      1.000            0.125      83.84
+              16      1.000            0.062      80.37
+              32      1.000            0.031      78.63
+
+  bounded-horizon rescue: survival e^{-rN} for rN below 1
+    rN= 0.1: survival=0.9048
+    rN= 1.0: survival=0.3679
+    rN= 5.0: survival=0.0067
+
+------------------------------------------------------------------------
+RESULT 4 -- self-reported anomaly-freedom (B13 cliff) + horizon finding
+------------------------------------------------------------------------
+  self-reported-anomaly-freedom fraction f -> worth (B13 cliff):
+    f=0.00  worth=132.40
+    f=0.25  worth=132.40
+    f=0.50  worth=131.70
+    f=0.60  worth=112.14
+    f=0.75  worth=82.80
+    f=1.00  worth=76.90
+
+  horizon finding: P(no anomalous crossing by N)=e^{-rN}; any r>0 ->0
+    rN=   1: P(no crossing)=3.679e-01
+    rN=   5: P(no crossing)=6.738e-03
+    rN=  20: P(no crossing)=2.061e-09
+    rN= 100: P(no crossing)=3.720e-44
+  only A=0 (anomaly-free) / exact 't Hooft match / bounded N holds.
+
+========================================================================
+SEEDED MC -- anomalous charge pumping (exact symmetry, non-conserved j)
+========================================================================
+
+(a) ANOMALY-FREE symmetry A=0: current conserved, never crosses (r=0)
+    r=0  survival at t=[3.0, 6.0, 9.0, 12.0]: 1.0000/1.0000/1.0000/1.0000   (all 1.0000 -- an anomaly-free symmetry is a true conservation)
+
+(b) ANOMALOUS symmetry A=1, flux phi=0.15: finite rate, Poisson pumping
+    r=r0*A*phi=0.0225
+    MC  survival: 0.9344/0.8733/0.8157/0.7609
+    e^(-rt)     : 0.9347/0.8737/0.8167/0.7634
+    fitted r from log-survival slope = 0.0228 (input 0.0225)
+
+(c) Adler-Bardeen: shrinking coupling g leaves the ANOMALOUS rate flat,
+    while a perturbative leak r_pert=r0*g^2 vanishes as g->0
+           g  r_pert MC (fit)  r_anom MC (fit)
+         1.0           0.1496           0.0222
+         0.5           0.0378           0.0223
+        0.25           0.0091           0.0222
+         0.1           0.0015           0.0227
+    -> the anomalous rate is the SAME at every g; the leak dies. You cannot tune the anomaly away with weak coupling.
+
+(d) sourcing winding flux phi (the loop builds the topological background):
+    r_anom=r0*A*phi grows with phi; survival at t=12 falls
+      flux phi    r_anom   r (fit)  survival t=12
+           0.0    0.0000    0.0000         1.0000
+           0.5    0.0750    0.0746         0.4075
+           1.0    0.1500    0.1509         0.1637
+           2.0    0.3000    0.2975         0.0282
+           4.0    0.6000    0.5946         0.0008
+
+========================================================================
+SUMMARY
+========================================================================
+R1 an exact, unbroken symmetry can have a NON-CONSERVED current (the
+   anomaly): d_mu j^mu = A*(topological density) != 0 with NO breaking term;
+   cov=e^-mu, mu=rN>0 for any A>0; only an ANOMALY-FREE symmetry (A=0) gives
+   mu=0. MC: survival tracks e^-rt (Poisson), A=0 never crosses.
+R2 Adler-Bardeen: the anomaly is one-loop exact, INDEPENDENT of coupling g, so
+   a smaller g (which kills a perturbative leak r~g^2) buys nothing; and the
+   loop SOURCES winding flux phi, so the violation grows with the winding it
+   accumulates. MC (c)/(d) confirm: r_anom flat in g, rising in phi.
+R3 what holds is not a smaller coupling but a different grounding: an
+   ANOMALY-FREE symmetry (no source), an exact 't HOOFT anomaly (un-removable,
+   matched UV-IR), or a bounded horizon (rN<1) -- throughput min(1,B/D).
+R4 self-reported anomaly-freedom collapses through B13's cliff; any anomalous
+   symmetry with an accessible topological source is pumped w.p.1 over an
+   unbounded horizon (P=e^-rN -> 0).
+Completes the QUINTET: B49 any LEAK mints / B50 any FLATNESS rides / B51 any
+   FINITE BARRIER is crossed / B52 any APPROXIMATE protection is mixed / B53
+   any ANOMALOUS conservation is pumped -- all 0-coverage in the limit unless
+   exactly zero / strictly gapped / strictly infinite / exactly protected /
+   anomaly-free (or 't Hooft-matched).
