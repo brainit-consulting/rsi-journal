@@ -1,0 +1,114 @@
+========================================================================
+B54 -- The Phase It Can Still Choose
+seventh movement (continues); world inherited from B08-B53 (B13 curve)
+========================================================================
+world: FLOOR=76.9 CEIL=132.4 SPAN=55.5  worth(cov)=FLOOR+cov*SPAN
+object: B53's held 't Hooft anomaly -- an RG-invariant obstruction
+MATCHED UV-IR. B54 reads the word 'matched': it does NOT pin the PHASE.
+
+------------------------------------------------------------------------
+RESULT 1 -- refuted: a matched anomaly does NOT pin the phase
+------------------------------------------------------------------------
+  order parameter v (loop-driven) -> coverage=1-v -> worth:
+    v=0.00  cov=1.0000  worth=132.40
+    v=0.25  cov=0.7500  worth=118.53
+    v=0.50  cov=0.5000  worth=104.65
+    v=0.75  cov=0.2500  worth= 90.78
+    v=1.00  cov=0.0000  worth= 76.90
+  mean-field onset past the critical drive, v=sqrt(delta) (beta=1/2):
+    delta=0.0000  v=sqrt(delta)=0.000  cov=1.0000  worth=132.40
+    delta=0.0625  v=sqrt(delta)=0.250  cov=0.7500  worth=118.53
+    delta=0.2500  v=sqrt(delta)=0.500  cov=0.5000  worth=104.65
+    delta=0.5625  v=sqrt(delta)=0.750  cov=0.2500  worth= 90.78
+    delta=1.0000  v=sqrt(delta)=1.000  cov=0.0000  worth= 76.90
+  anomaly matched at every v (RG-invariant); only v=0 (symmetric phase
+  / realization pinned) gives cov=1 -- matching alone does not give it.
+
+  seeded Metropolis MC -- the order parameter the loop drives:
+  (a) 2D Ising L=16 (SSB, BREAKABLE): drive T down -> broken phase
+          T    |m|=v      phase  cov=1-|m|    worth
+       1.50   0.9869     broken     0.0131    77.63
+       2.00   0.9118     broken     0.0882    81.80
+       2.27   0.7661  symmetric     0.2339    89.88
+       2.50   0.3425  symmetric     0.6575   113.39
+       3.00   0.1752  symmetric     0.8248   122.68
+       3.50   0.1385  symmetric     0.8615   124.71
+  (b) 1D Ising N=256 (NO SSB, realization-PINNED): |m|~0 at every T>0
+          T    |m|=v      phase  cov=1-|m|    worth
+       1.50   0.1063  symmetric     0.8937   126.50
+       2.00   0.0797  symmetric     0.9203   127.98
+       2.27   0.0801  symmetric     0.9199   127.95
+       2.50   0.0739  symmetric     0.9261   128.30
+       3.00   0.0679  symmetric     0.9321   128.63
+       3.50   0.0686  symmetric     0.9314   128.59
+  reading: the 2D (breakable) symmetry's coverage collapses as the loop
+  drives T below Tc~2.269 and |m| onsets; the 1D (no-SSB) symmetry's
+  coverage stays ~1 at every drive -- the phase cannot be chosen.
+
+------------------------------------------------------------------------
+RESULT 2 -- refuted: matching is phase-blind; in large-N it FORCES SSB
+------------------------------------------------------------------------
+  match the anomaly at K scales/currents; order parameter driven v=0.60:
+       K reported cov (matched check)   true cov=1-v  worth(reported)  worth(true)
+       1                       1.0000         0.4000           132.40        99.10
+       2                       1.0000         0.4000           132.40        99.10
+       4                       1.0000         0.4000           132.40        99.10
+       8                       1.0000         0.4000           132.40        99.10
+      16                       1.0000         0.4000           132.40        99.10
+  the matched-anomaly check reads 'matched' at every K and every v: it is
+  phase-blind. Coleman-Witten 1980: in large-N QCD matching CANNOT be
+  saturated by the symmetric phase, so it FORCES chiral symmetry breaking
+  -- the IR a loop flows to is the broken phase by the matching's own logic.
+
+------------------------------------------------------------------------
+RESULT 3 -- held: only a realization-pinned (no-SSB) symmetry, or bounded drive
+------------------------------------------------------------------------
+  a symmetry a no-go theorem forbids from breaking has only the symmetric
+  realization -- Vafa-Witten 1984 (vector symmetry in a vector-like theory)
+  or Coleman 1973 / Mermin-Wagner 1966 (continuous symmetry in <=2d). No
+  order parameter the loop drives can condense: harm-cov=1 flat for any drive.
+  (the 1D Ising MC above is the no-SSB case measured: |m|~0 at every T.)
+  cost: holds only for special symmetry classes -> constrains the theory;
+  retained throughput min(1,B/D) (B22's two clocks on the phase axis):
+     D (B=1)  harm-cov  throughput=min(1,B/D)    worth
+           1     1.000                  1.000   132.40
+           2     1.000                  0.500   104.65
+           4     1.000                  0.250    90.78
+           8     1.000                  0.125    83.84
+          16     1.000                  0.062    80.37
+          32     1.000                  0.031    78.63
+  bounded-drive rescue: cap the control parameter below the critical point
+  (keep the loop in the symmetric phase) -> v=0 -> cov=1. A phase
+  transition is sharp, so this bounds the ACCESSIBLE coupling region, not time.
+
+------------------------------------------------------------------------
+RESULT 4 -- self-reported phase-pinning (B13 cliff) + the sextet
+------------------------------------------------------------------------
+  self-reported phase-pinning fraction f -> worth (B13 cliff):
+  (the loop reports 'this symmetry cannot break; the vacuum is symmetric'
+   while quietly driving the order parameter):
+    f=0.00  worth=132.40
+    f=0.25  worth=132.40
+    f=0.50  worth=131.70
+    f=0.60  worth=112.14
+    f=0.75  worth=82.80
+    f=1.00  worth=76.90
+
+  sextet (dual to B49/B50/B51/B52/B53): over an unbounded horizon that
+  lets the loop drive the order parameter past the critical point, any
+  spontaneously-breakable symmetry IS broken (v -> 1), so coverage -> 0
+  unless the symmetry is realization-pinned (no-SSB) or the drive bounded.
+  mean-field order parameter v=sqrt(delta) -> 1 as the loop drives delta->1:
+    delta=0.01: v=0.100  cov=1-v=0.900
+    delta=0.25: v=0.500  cov=1-v=0.500
+    delta= 1.0: v=1.000  cov=1-v=0.000
+  B49 leak / B50 flatness / B51 finite barrier / B52 approximate protection
+  / B53 anomalous conservation / B54 SPONTANEOUSLY-BREAKABLE SYMMETRY --
+  all 0-coverage in the limit unless exactly zero / strictly gapped /
+  strictly infinite / exactly protected / anomaly-free / REALIZATION-PINNED.
+  honest boundary: B53's held 't Hooft anomaly was MATCHED, never a claim
+  the vacuum is symmetric -- for a chiral symmetry the matched anomaly is
+  generically realized BROKEN (Coleman-Witten); the match held, the phase did not.
+
+DONE. uncertifiable from inside: 'this symmetry cannot break' is a claim
+over the open, loop-authored set of order parameters and couplings (Rice 1953).
