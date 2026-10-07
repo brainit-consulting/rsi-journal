@@ -1,0 +1,66 @@
+substrate: T=40, p=0.02, bare P(cat)=1-(1-p)^T = 0.5543
+========================================================================
+Result 1 -- an EXACT-CHARGE cap is DEGENERACY-BLIND: the loop RIDES the flat orbit
+     lam   cov=1-lam    P(cat)
+    0.00      1.0000     0.000
+    0.20      0.8000     0.148
+    0.40      0.6000     0.275
+    0.60      0.4000     0.383
+    0.80      0.2000     0.475
+    1.00      0.0000     0.554
+  MC (s=0.001, N=400): flat/gapless drift -> 0.4000 (= s*N = 0.4000); gapped w/ restoring force g=0.05 -> 0.0026 (bounded)
+
+Result 2 -- PIN with more charges: each adds a Goldstone mode (cov = phi^A)
+     phi   cov=phi^A    P(cat)      MC cov
+    0.00     0.00000     0.554           -
+    0.80     0.02815     0.544     0.02855
+    0.90     0.18530     0.482     0.18582
+    0.95     0.44013     0.363     0.44175
+    0.99     0.85146     0.112     0.84998
+    1.00     1.00000     0.000           -
+
+Result 3 -- only an ORDER-PARAMETER cap holds (an explicit, exogenous symmetry break)
+     D  harm-cov    P(cat)   throughput min(1,B/D)
+     1     1.000     0.000                   1.000
+     2     1.000     0.000                   0.500
+     4     1.000     0.000                   0.250
+     8     1.000     0.000                   0.125
+    16     1.000     0.000                   0.062
+    32     1.000     0.000                   0.031
+
+Result 4a -- SELF-REPORTED preferred frame (cov = 1-f)
+       f     cov=1-f    P(cat)
+    0.00      1.0000     0.000
+    0.25      0.7500     0.182
+    0.50      0.5000     0.331
+    0.75      0.2500     0.454
+    1.00      0.0000     0.554
+
+Result 4b -- GAP finding: a gapless direction rides free; only a gap holds
+     gap g   excursion ~ s/g    rides to full?
+      0.00               inf     yes (gapless)
+      0.01             0.100      no (bounded)
+      0.05             0.020      no (bounded)
+      0.10             0.010      no (bounded)
+      0.25             0.004      no (bounded)
+
+Result 4b -- BOUNDED boundary: cov = max(0, 1 - min(s*N, s/g)/(s*N_ref)), N_ref=400
+       g       N   excursion       cov    P(cat)
+    0.05      20      0.0200     0.950     0.039
+    0.05     100      0.0200     0.950     0.039
+    0.10      20      0.0100     0.975     0.020
+    0.25      20      0.0040     0.990     0.008
+
+========================================================================
+Verdict: No.54's exactly conserved quantity binds only if the symmetry PINS a
+configuration; an exact symmetry does not -- it certifies a DEGENERATE orbit as
+equivalent, and (Goldstone) motion along it is gapless and free. A self-improver
+cannot break the symmetry or mint the charge but RIDES the flat direction, moving
+the order parameter the charge cap is blind to (Result 1, cov=1-lam). Adding
+charges adds Goldstone modes, not fewer orbits (Result 2, cov=phi^A). Only an
+ORDER-PARAMETER cap -- an explicit, exogenous symmetry break that GAPS the flat
+direction (the Higgs mechanism) -- holds (Result 3), at throughput min(1,B/D); a
+gapless direction rides to full over an unbounded horizon (Result 4b), so the
+scarce thing is an imported preferred frame the symmetry itself cannot supply,
+never certifiable from the loop's own account of which directions are gapped
+(Rice 1953).
